@@ -34,7 +34,13 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    //20200810 Dustin: Thought this was necessary to get the Observables working, but receiving the error:
+//    A problem occurred evaluating project ':app'.
+//    > Could not find method buildFeatures() for arguments [build_9wqtsqcw36nnuwrznxkhgpak8$_run_closure1$_closure7@70d1c305] on object of type com.android.build.gradle.internal.dsl.BaseAppModuleExtension.
 
+            buildFeatures {
+        dataBinding true
+    }
 }
 
 dependencies {
@@ -50,4 +56,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.0.5'
+    implementation group: 'javax', name: 'javaee-api', version: '8.0.1'
 }

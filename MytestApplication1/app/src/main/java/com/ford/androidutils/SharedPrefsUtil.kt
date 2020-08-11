@@ -342,4 +342,5 @@ interface SharedPrefsUtil
 //        AUTHORIZED_ACTION_MESSAGE_IDS,
 //        HAS_SEEN_SEND_TO_VEHICLE_ON_BOARDING_SCREEN
 //    }
+    var currentVehicleVin: String
 }

@@ -1,4 +1,7 @@
 package com.ford.ngsdnuser.providers;
 
-public class AccountInfoProviderInterface {
+import io.reactivex.Completable;
+
+public interface AccountInfoProviderInterface {
+    Completable getAccountCountry();
 }

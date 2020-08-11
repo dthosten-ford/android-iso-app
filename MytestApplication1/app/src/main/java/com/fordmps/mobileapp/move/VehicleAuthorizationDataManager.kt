@@ -1,15 +1,25 @@
 
 package com.fordmps.mobileapp.move
 
-import com.ford.repo.capabilities.VehicleCapabilitiesRepository
-import com.ford.xapi.models.response.VehicleCapability
-import com.ford.xapi.models.response.XapiAuthStatus
-import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
-import javax.inject.Inject
+import com.ford.dashboard.models.VehicleInfo
 
-interface VehicleAuthorizationDataManagerInterface
+//
+//import com.ford.repo.capabilities.VehicleCapabilitiesRepository
+//import com.ford.xapi.models.response.VehicleCapability
+//import com.ford.xapi.models.response.XapiAuthStatus
+//import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider
+//import io.reactivex.Observable
+//import io.reactivex.functions.BiFunction
+//import javax.inject.Inject
+
+interface VehicleAuthorizationDataManagerInterface {
+    fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
+
+    }
+
+    val pendingReset: Boolean
+    val authorizationData: VehicleInfo
+}
 
 //@OpenForTesting
 //class VehicleAuthorizationDataManager @Inject constructor(

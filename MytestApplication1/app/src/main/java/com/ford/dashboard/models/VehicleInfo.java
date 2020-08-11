@@ -8,9 +8,11 @@
 
 package com.ford.dashboard.models;
 
-import com.ford.vehiclecommon.models.Vehicle;
-import com.ford.vehiclecommon.models.VehicleAuthStatus;
-import com.ford.vehiclecommon.models.VehicleStatus;
+//import com.ford.vehiclecommon.models.Vehicle;
+//import com.ford.vehiclecommon.models.VehicleAuthStatus;
+//import com.ford.vehiclecommon.models.VehicleStatus;
+
+import java.util.Optional;
 
 public interface VehicleInfo extends Vehicle {
     void setVehicleSource(int vehicleSource);
@@ -31,4 +33,10 @@ public interface VehicleInfo extends Vehicle {
     boolean isTcuEnabled();
 
     String getJointVenture();
+
+    Optional<String> getNickname();
+
+    String getLocalizedModelName();
+
+    boolean getSDNSourceForTCU();
 }

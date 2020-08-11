@@ -1,4 +1,7 @@
 package com.fordmps.mobileapp.shared.managers;
 
-public class VehicleCapabilitiesManagerInterface {
+import io.reactivex.Completable;
+
+public interface VehicleCapabilitiesManagerInterface {
+    Completable getVhaTypeFromVehicleCapabilityService(String vin);
 }
