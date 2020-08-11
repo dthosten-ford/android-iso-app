@@ -10,7 +10,7 @@ package com.ford.androidutils
 
 //import com.ford.androidutils.preferences.*
 
-interface SharedPrefsUtil :
+interface SharedPrefsUtil
 //        AccountPreferences,
 //        AirQualityPreferences,
 //        BikesharePreferences,

@@ -7,6 +7,7 @@
  */
 package com.fordmps.core
 
+import androidx.core.content.PermissionChecker
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
 import com.ford.androidutils.OpenForTesting
@@ -44,5 +45,5 @@ open class BaseLifecycleViewModel : ViewCallbackObserver {
         override fun onHidden() = onHiddenDisposables.clear()
 
         // After onPermissionsResult(), onResume() is called. so to prevent re-registering events.
-        override fun onPermissionsResult(result: PermissionResult) = lifecycleSubscriptions.clear()
+        override fun onPermissionsResult(result: PermissionChecker.PermissionResult) = lifecycleSubscriptions.clear()
         }

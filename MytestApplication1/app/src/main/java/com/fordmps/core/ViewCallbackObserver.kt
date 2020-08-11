@@ -1,4 +1,7 @@
 
 package com.fordmps.core;
 
-public interface ViewCallbackObserver
+import androidx.core.content.PermissionChecker
+
+public interface ViewCallbackObserver {
+}
