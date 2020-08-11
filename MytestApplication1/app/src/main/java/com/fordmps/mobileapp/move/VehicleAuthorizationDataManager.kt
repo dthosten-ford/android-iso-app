@@ -1,14 +1,10 @@
 
 package com.fordmps.mobileapp.move
 
-import androidx.core.util.Pair
-import com.ford.dashboard.models.VehicleInfo
 import com.ford.repo.capabilities.VehicleCapabilitiesRepository
 import com.ford.xapi.models.response.VehicleCapability
 import com.ford.xapi.models.response.XapiAuthStatus
-import com.fordmps.mobileapp.shared.OpenForTesting
 import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider
-import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import javax.inject.Inject

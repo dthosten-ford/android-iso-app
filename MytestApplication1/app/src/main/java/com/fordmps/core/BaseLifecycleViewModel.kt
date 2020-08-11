@@ -9,7 +9,7 @@ package com.fordmps.core
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
-import com.fordmps.mobileapp.shared.OpenForTesting
+import com.ford.androidutils.OpenForTesting
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
