@@ -1,4 +1,4 @@
 package com.fordmps.mobileapp.move;
 
-class VehicleCapability {
+public class VehicleCapability {
 }
