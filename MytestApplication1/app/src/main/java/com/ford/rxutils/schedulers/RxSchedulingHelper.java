@@ -8,15 +8,15 @@
 
 package com.ford.rxutils.schedulers;
 
-import com.ford.rxutils.schedulers.rx2.SchedulingHelperRx2;
-
-import javax.inject.Inject;
-
-import io.reactivex.CompletableTransformer;
-import io.reactivex.FlowableTransformer;
-import io.reactivex.MaybeTransformer;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.SingleTransformer;
+//import com.ford.rxutils.schedulers.rx2.SchedulingHelperRx2;
+//
+//import javax.inject.Inject;
+//
+//import io.reactivex.CompletableTransformer;
+//import io.reactivex.FlowableTransformer;
+//import io.reactivex.MaybeTransformer;
+//import io.reactivex.ObservableTransformer;
+//import io.reactivex.SingleTransformer;
 
 //public class RxSchedulingHelper extends RxSchedulingHelperInterface {
 //

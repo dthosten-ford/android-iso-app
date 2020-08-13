@@ -48,13 +48,12 @@ import com.ford.paak.PaakAdapter;
 import com.ford.recall.fsa.repo.common.VehicleRecallAndFsa;
 import com.ford.rxutils.CacheTransformerProvider;
 //Gowtham
-import com.ford.rxutils.schedulers.RxSchedulingHelper;
 import com.ford.rxutils.schedulers.RxSchedulingHelperInterface;
 import com.ford.rxutils.schedulers.Threads;
+import com.ford.utils.BitmapImageUtil;
 import com.ford.utils.TextUtils;
 import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleStatus;
-import com.ford.vehiclehealth.models.VehicleAlertResponse;
 //Halcyon
 import com.ford.vinlookup.managers.VinLookupProvider;
 import com.ford.vinlookup.managers.VinLookupProviderInterface;
@@ -87,7 +86,7 @@ import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManagerInterface
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProviderInterface;
 import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
-import com.fordmps.mobileapp.shared.utils.BitmapImageUtil;
+
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
 import com.fordmps.viewutils.R;
