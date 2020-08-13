@@ -10,7 +10,7 @@ package com.ford.vehiclecommon.models;
 
 import androidx.annotation.NonNull;
 
-import com.google.common.base.Optional;
+import java.util.Optional;
 
 
 public interface Vehicle {

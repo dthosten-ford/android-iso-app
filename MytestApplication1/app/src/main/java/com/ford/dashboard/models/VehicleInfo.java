@@ -12,6 +12,8 @@ package com.ford.dashboard.models;
 //import com.ford.vehiclecommon.models.VehicleAuthStatus;
 //import com.ford.vehiclecommon.models.VehicleStatus;
 
+import com.ford.vehiclecommon.models.VehicleStatus;
+
 import java.util.Optional;
 
 public interface VehicleInfo extends Vehicle {
@@ -38,5 +40,5 @@ public interface VehicleInfo extends Vehicle {
 
     String getLocalizedModelName();
 
-    boolean getSDNSourceForTCU();
+    int getSDNSourceForTCU();
 }
