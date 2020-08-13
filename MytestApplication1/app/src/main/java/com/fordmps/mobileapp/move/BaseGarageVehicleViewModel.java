@@ -9,10 +9,13 @@
 package com.fordmps.mobileapp.move;
 /*
 * Steps:
-* 1) Clone project locally
-* 2) make a new file, commit,  and push a commit (confirm permissions) (jp branch)
-* 3) test a rebase (git pull -- rebase)
+* 1) X Clone project locally
+* 2) X make a new file, commit,  and push a commit (confirm permissions) (jp branch)
+* 3) X test a rebase (git pull -- rebase)
 * 4) break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
+* 5) fix external references.
+* 6) fix internal references
+*
 * */
 
 import android.graphics.Bitmap;
@@ -24,15 +27,19 @@ import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
+//Yuvi will fiz this.
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.ford.androidutils.SharedPrefsUtil;
 import com.ford.androidutils.ui.glide.GlideProvider;
 import com.ford.androidutils.ui.glide.GlideProviderInterface;
+//renee
 import com.ford.applink.managers.ActiveVhaAlertsManager;
 import com.ford.applink.managers.ActiveVhaAlertsManagerInterface;
+
 import com.ford.applink.providers.VcsAppLinkCapabilityProvider;
 import com.ford.dashboard.models.VehicleInfo;
+//Ravi
 import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnuser.providers.AccountInfoProviderInterface;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
@@ -40,6 +47,7 @@ import com.ford.ngsdnvehicle.providers.NgsdnVehicleProviderInterface;
 import com.ford.paak.PaakAdapter;
 import com.ford.recall.fsa.repo.common.VehicleRecallAndFsa;
 import com.ford.rxutils.CacheTransformerProvider;
+//Gowtham
 import com.ford.rxutils.schedulers.RxSchedulingHelper;
 import com.ford.rxutils.schedulers.RxSchedulingHelperInterface;
 import com.ford.rxutils.schedulers.Threads;
@@ -47,6 +55,7 @@ import com.ford.utils.TextUtils;
 import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleStatus;
 import com.ford.vehiclehealth.models.VehicleAlertResponse;
+//Halcyon
 import com.ford.vinlookup.managers.VinLookupProvider;
 import com.ford.vinlookup.managers.VinLookupProviderInterface;
 import com.ford.xapi.models.response.VehicleCapability;
@@ -56,10 +65,13 @@ import com.fordmps.data.enums.SdnType;
 import com.fordmps.mobileapp.find.categories.Country;
 import com.fordmps.mobileapp.move.managers.ChargingStatusUtil;
 import com.fordmps.mobileapp.move.managers.ChargingStatusUtilInterface;
+//Kelly
 import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider;
 import com.fordmps.mobileapp.shared.configuration.ConfigurationProviderInterface;
+//Melissa
 import com.fordmps.mobileapp.shared.datashare.ResourceProvider;
 import com.fordmps.mobileapp.shared.datashare.ResourceProviderInterface;
+//Shashank
 import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
 import com.fordmps.mobileapp.shared.datashare.TransientDataProviderInterface;
 import com.fordmps.mobileapp.shared.datashare.usecases.FindCollisionCenterVehicleInfoUseCase;
@@ -67,6 +79,7 @@ import com.fordmps.mobileapp.shared.datashare.usecases.FindVehicleLocationUseCas
 import com.fordmps.mobileapp.shared.datashare.usecases.GarageVehicleSelectedVinUseCase;
 import com.fordmps.mobileapp.shared.datashare.usecases.ProgressBarUseCase;
 import com.fordmps.mobileapp.shared.events.StartActivityEvent;
+//Sravan
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBus;
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBusInterface;
 import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManager;
