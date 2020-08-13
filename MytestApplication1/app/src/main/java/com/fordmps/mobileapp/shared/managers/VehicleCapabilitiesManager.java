@@ -8,8 +8,13 @@
 
 package com.fordmps.mobileapp.shared.managers;
 
-import androidx.annotation.NonNull;
+import com.fordmps.mobileapp.move.VehicleCapabilitiesResponse;
 
+import io.reactivex.Completable;
+import io.reactivex.Maybe;
+import io.reactivex.Observable;
+
+/*
 import com.ford.androidutils.SharedPrefsUtil;
 import com.ford.applink.providers.LiveTrafficEligibilityProvider;
 import com.ford.applink.providers.VcsAppLinkCapabilityProvider;
@@ -22,8 +27,8 @@ import com.ford.vcs.models.VehicleCapabilitiesResponse;
 import com.ford.vcs.vcsutil.VehicleCapabilitiesUtil;
 import com.ford.vcs.repositories.RemoteStartCapabilityRepository;
 import com.ford.vcs.storage.VehicleSdnTypeProvider;
-import com.fordmps.data.enums.SdnType;
-import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider;
+import com.fordmps.data.enums.SdnType;*/
+/*import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider;
 
 import java.util.List;
 
@@ -31,21 +36,22 @@ import javax.inject.Inject;
 
 import dagger.Reusable;
 import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.Single;*/
 
 //@Reusable
-//public class VehicleCapabilitiesManager extends VehicleCapabilitiesManagerInterface {
-//
-//    private final LiveTrafficEligibilityProvider liveTrafficEligibilityProvider;
-//    private final VehicleCapabilitiesUtil vehicleCapabilitiesUtil;
-//    private final RemoteStartCapabilityRepository remoteStartCapabilityRepository;
-//    private final VcsAppLinkCapabilityProvider vcsAppLinkCapabilityProvider;
-//    private final RxSchedulingHelper rxSchedulingHelper;
-//    private final VehicleSdnTypeProvider vehicleSdnTypeProvider;
-//    private final ConfigurationProvider configurationProvider;
-//    private final SharedPrefsUtil sharedPrefsUtil;
-//    private final VcsRepository vcsRepository;
-//
+public class VehicleCapabilitiesManager implements VehicleCapabilitiesManagerInterface {
+
+/*    private final LiveTrafficEligibilityProvider liveTrafficEligibilityProvider;
+    private final VehicleCapabilitiesUtil vehicleCapabilitiesUtil;
+    private final RemoteStartCapabilityRepository remoteStartCapabilityRepository;
+    private final VcsAppLinkCapabilityProvider vcsAppLinkCapabilityProvider;
+    private final RxSchedulingHelper rxSchedulingHelper;
+    private final VehicleSdnTypeProvider vehicleSdnTypeProvider;
+    private final ConfigurationProvider configurationProvider;
+    private final SharedPrefsUtil sharedPrefsUtil;
+    private final VcsRepository vcsRepository;*/
+
+    //
 //    @Inject
 //    public VehicleCapabilitiesManager(LiveTrafficEligibilityProvider liveTrafficEligibilityProvider,
 //                                      VehicleCapabilitiesUtil vehicleCapabilitiesUtil,
@@ -171,3 +177,4 @@ import io.reactivex.Single;
 //                .compose(rxSchedulingHelper.observableSchedulers(Threads.IO));
 //    }
 //}
+}
