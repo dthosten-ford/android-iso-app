@@ -96,6 +96,9 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 import static com.ford.vcs.models.Feature.FeatureNames.USER_RESET;
+import static com.ford.vehiclecommon.models.Vehicle.Authorization.AUTHORIZED;
+import static com.ford.vehiclecommon.models.Vehicle.Authorization.PRIMARY_AUTH_PENDING;
+import static com.ford.vehiclecommon.models.Vehicle.Authorization.SECONDARY_AUTH_PENDING;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_TMC;
 import static com.fordmps.mobileapp.move.vehiclehealthalerts.VehicleHealthAlertsUtil.getVhaSource;
