@@ -8,37 +8,7 @@
 
 package com.fordmps.mobileapp.move.managers;
 
-import androidx.annotation.DrawableRes;
-
-import com.ford.vehiclecommon.models.VehicleStatus;
-import com.fordmps.viewutils.R;
-import com.fordmps.mobileapp.shared.datashare.ResourceProvider;
-
-import javax.inject.Inject;
-
-import static com.ford.ngsdnvehicle.models.NgsdnVehicleStatus.VehicleHybridModeStatus.AUTO_CHARGE_SUSTAIN_MODE;
-import static com.ford.ngsdnvehicle.models.NgsdnVehicleStatus.VehiclePlugStatus.PLUG_OFF;
-import static com.ford.ngsdnvehicle.models.NgsdnVehicleStatus.VehiclePlugStatus.PLUG_ON;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.CABIN_PRE_CONDITIONING;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.CHARGE_TARGET_REACHED;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.CHARGING_AC;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.CHARGING_DC_FAST_CHARGE;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.CHARGE_SCHEDULED;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.COMPLETE;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.EVES_NOT_COMPATIBLE;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.EVES_NOT_DETECTED;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.EVES_PAUSED;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.FAST_CHARGING;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.FAULT_INSIDE_CAR;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.FAULT_OUTSIDE_CAR;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.FAULT_UNKNOWN_LOCATION;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.IN_PROGRESS;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.NOT_READY;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.NOT_READY_NULL_STATE;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.NOT_USED;
-import static com.ford.vehiclecommon.models.VehicleChargingStatus.SCHEDULED;
-
-//public class ChargingStatusUtil implements ChargingStatusUtilInterface {
+public class ChargingStatusUtil implements ChargingStatusUtilInterface {
 //    public static final int CHARGING_STATUS_RESOURCE = -1;
 //    private final ResourceProvider resourceProvider;
 //
@@ -163,4 +133,4 @@ import static com.ford.vehiclecommon.models.VehicleChargingStatus.SCHEDULED;
 //        }
 //        return "";
 //    }
-//}
+}
