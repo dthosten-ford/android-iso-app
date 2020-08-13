@@ -9,7 +9,7 @@
 
 package com.fordmps.mobileapp.shared.configuration;
 
-//public class ConfigurationProvider implements ConfigurationProviderInterface {
+public class ConfigurationProvider implements ConfigurationProviderInterface {
 //
 //    private final ConfigurationFactory configurationFactory;
 //
@@ -20,4 +20,4 @@ package com.fordmps.mobileapp.shared.configuration;
 //    public Configuration getConfiguration() {
 //        return configurationFactory.getConfiguration();
 //    }
-//}
+}
