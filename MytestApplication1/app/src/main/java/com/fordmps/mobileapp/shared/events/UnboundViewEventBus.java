@@ -8,6 +8,8 @@
 
 package com.fordmps.mobileapp.shared.events;
 
+import com.fordmps.mobileapp.move.StartActivityEvent;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -15,8 +17,12 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 import io.reactivex.subjects.PublishSubject;
 
-//@Singleton
-//public class UnboundViewEventBus implements UnboundViewEventBusInterface {
+@Singleton
+public class UnboundViewEventBus implements UnboundViewEventBusInterface {
+    @Override
+    public void send(StartActivityEvent event) {
+
+    }
 //
 //    private final PublishSubject<ToastEvent> toastSubject = PublishSubject.create();
 //    private final PublishSubject<SnackbarEvent> snackbarSubject = PublishSubject.create();
@@ -438,4 +444,4 @@ import io.reactivex.subjects.PublishSubject;
 //    private boolean fromEmitter(BaseUnboundViewEvent event, Class viewModelClass) {
 //        return viewModelClass.getName().equals((event).getEmitter().getClass().getName());
 //    }
-//}
+}
