@@ -52,6 +52,7 @@ import com.ford.rxutils.schedulers.RxSchedulingHelperInterface;
 import com.ford.rxutils.schedulers.Threads;
 import com.ford.utils.BitmapImageUtil;
 import com.ford.utils.TextUtils;
+
 import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleStatus;
 //Halcyon
@@ -86,7 +87,7 @@ import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManagerInterface
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProviderInterface;
 import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
-
+import com.fordmps.mobileapp.shared.utils.BitmapImageUtil;//Gowtham
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
 import com.fordmps.viewutils.R;
@@ -283,7 +284,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         transientDataProvider.save(new GarageVehicleSelectedVinUseCase(vehicleInfo.getVin(), vehicleImage.get(), myVehiclePrefix, getDisplayName(),
                 getBrandYearAndModel(resourceProvider.getString(R.string.common_environment_brand)), vehicleCompatibility, getModelName()));
 
-        StartActivityEvent event = StartActivityEvent.build(this).activityName(VehicleDetailsActivity.class);
+        StartActivityEvent event = StartActivityEvent.build(this).activityName(VehicleDetailsActivity.class);//renee
         eventBus.send(event);
     }
 //Dustin: could we push the logic for TCU into vcManager?  perhaps create a rules class when to get a service?
@@ -326,6 +327,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         }
     }
 //Dustin: this smells of convienence.
+    //Shashank
     public PaakVehicleControlsViewModel getVehicleControlsViewModel() {
         return vehicleControlsViewModel;
     }
