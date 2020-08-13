@@ -141,8 +141,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     private VehicleControlManagerInterface vehicleControlManager;
 //    private final ChargingStatusUtil chargingStatusUtil;
     private final ChargingStatusUtilInterface chargingStatusUtil;
-//    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
-    protected PaakVehicleControlsViewModelInterface vehicleControlsViewModel; //Dustin: Question: Should VM's ref VM's
+    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
+//    protected PaakVehicleControlsViewModelInterface vehicleControlsViewModel; //Dustin: Question: Should VM's ref VM's
 //    protected final ResourceProvider resourceProvider;
     protected final ResourceProviderInterface resourceProvider;//Dustin: Goal: Completely remove this
     protected VehicleInfo vehicleInfo;
