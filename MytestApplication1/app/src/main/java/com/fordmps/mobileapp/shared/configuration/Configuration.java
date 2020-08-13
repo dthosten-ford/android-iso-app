@@ -1,26 +1,12 @@
 package com.fordmps.mobileapp.shared.configuration;
 
-public class Configuration {
+public interface Configuration {
 
-    private boolean paakEnabled = false;
+    boolean isDashboardXApiPhase2Enabled();
 
-    public boolean isPaakEnabled() {
-        return paakEnabled;
-    }
+    boolean isPaakEnabled();
 
-    public void setPaakEnabled(boolean paakEnabled) {
-        this.paakEnabled = paakEnabled;
-    }
+    boolean shouldShowFordScriptOverlay();
 
-    public boolean isDashboardXApiPhase2Enabled() {
-        return false;
-    }
-
-    public boolean shouldShowFordScriptOverlay() {
-        return false;
-    }
-
-    public boolean isTmcMigrationEnabled() {
-        return false;
-    }
+    boolean isTmcMigrationEnabled();
 }
