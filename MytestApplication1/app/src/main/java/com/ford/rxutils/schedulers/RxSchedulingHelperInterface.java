@@ -1,4 +1,7 @@
 package com.ford.rxutils.schedulers;
 
-public class RxSchedulingHelperInterface {
+import io.reactivex.ObservableTransformer;
+
+public interface RxSchedulingHelperInterface<T> {
+    ObservableTransformer<T, T> observableSchedulers();
 }
