@@ -17,7 +17,7 @@ public class ConfigurationProvider implements ConfigurationProviderInterface {
 //        this.configurationFactory = configurationFactory;
 //    }
 //
-//    public Configuration getConfiguration() {
-//        return configurationFactory.getConfiguration();
-//    }
+    public Configuration getConfiguration() {
+        return getConfiguration();
+    }
 }
