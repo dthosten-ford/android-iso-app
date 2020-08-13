@@ -1,11 +1,19 @@
 package com.fordmps.mobileapp.move;
 
+import com.ford.dashboard.models.VehicleInfo;
+
 public interface PaakVehicleControlsViewModelInterface {
     void setVehicleVisible();
 
     void setVehicleNotVisible();
 
     void showGenericErrorMessage();
+
+    Object getLocksAssetManager();
+
+    void setVehicleControlsForPaak();
+
+    void checkVehicleState(VehicleInfo vehicleInfo);
 
 //    public static class Factory {
 //        private final VehicleCommandManager vehicleCommandManager;
