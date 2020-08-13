@@ -5,5 +5,7 @@ import org.junit.Test;
 public class VarmaTest {
 
     @Test
-    public void testThatDoNothing() {}
+    public void testThatDoNothing() {
+        //nothing here
+    }
 }
