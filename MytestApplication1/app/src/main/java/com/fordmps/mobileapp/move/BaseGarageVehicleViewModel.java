@@ -145,8 +145,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     protected VehicleInfo vehicleInfo;
 //    protected final UnboundViewEventBus eventBus;
     protected final UnboundViewEventBusInterface eventBus;
-//    private ActiveVhaAlertsManager activeVhaAlertsManager;
-    private ActiveVhaAlertsManagerInterface activeVhaAlertsManager;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
+    private ActiveVhaAlertsManager activeVhaAlertsManager;
+    private ActiveVhaAlertsManagerInterface activeVhaAlertsManagerInterface;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
 //    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
     protected VehicleCapabilitiesManagerInterface vehicleCapabilitiesManager;
 //    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
@@ -162,7 +162,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     private boolean hasRecalls = false;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
 
     protected BaseGarageVehicleViewModel(VehicleInfo vehicleInfo,
-                                         ActiveVhaAlertsManagerInterface activeVhaAlertsManager,
+                                         ActiveVhaAlertsManagerInterface activeVhaAlertsManagerInterface,
                                          GlideProviderInterface glideProvider,
                                          VehicleImageUrlProviderInterface vehicleImageUrlProvider,
                                          UnboundViewEventBusInterface eventBus,
@@ -180,7 +180,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                                          PaakAdapter paakAdapter,
                                          VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager) {
         this.vehicleInfo = vehicleInfo;
-        this.activeVhaAlertsManager = activeVhaAlertsManager;
+        this.activeVhaAlertsManagerInterface = activeVhaAlertsManagerInterface;
         this.eventBus = eventBus;
         this.transientDataProvider = transientDataProvider;
         this.vehicleImageLoadedEvent = vehicleImageLoadedEvent;
