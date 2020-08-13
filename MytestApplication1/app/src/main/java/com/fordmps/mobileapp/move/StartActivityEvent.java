@@ -1,7 +1,12 @@
 package com.fordmps.mobileapp.move;
 
-public interface StartActivityEvent {
+public class StartActivityEvent {
+
     static StartActivityEvent build(BaseGarageVehicleViewModel baseGarageVehicleViewModel) {
         return null;
+    }
+
+    public StartActivityEvent activityName(Class startActivityClazz) {
+        return this;
     }
 }
