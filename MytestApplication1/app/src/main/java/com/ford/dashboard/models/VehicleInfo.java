@@ -26,7 +26,7 @@ public interface VehicleInfo extends Vehicle {
     void setMasterResetAvailability(boolean resetAvailable);
     boolean isMasterResetAvailable();
 
-    int getModelYear();
+    String getModelYear();
 
     String getVin();
 
