@@ -74,10 +74,6 @@ import com.fordmps.mobileapp.shared.datashare.ResourceProviderInterface;
 //Shashank
 import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
 import com.fordmps.mobileapp.shared.datashare.TransientDataProviderInterface;
-import com.fordmps.mobileapp.shared.datashare.usecases.FindCollisionCenterVehicleInfoUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.FindVehicleLocationUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.GarageVehicleSelectedVinUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.ProgressBarUseCase;
 import com.fordmps.mobileapp.shared.events.StartActivityEvent;
 //Sravan
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBus;
