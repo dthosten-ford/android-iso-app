@@ -10,7 +10,7 @@ package com.fordmps.mobileapp.move;
 /*
 * Steps:
 * 1) Clone project locally
-* 2) make and push a commit (confirm permissions) (jp branch)
+* 2) make a new file, commit,  and push a commit (confirm permissions) (jp branch)
 * 3) test a rebase (git pull -- rebase)
 * 4) break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
 * */
