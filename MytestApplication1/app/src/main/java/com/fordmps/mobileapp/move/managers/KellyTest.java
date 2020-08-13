@@ -1,5 +1,5 @@
 package com.fordmps.mobileapp.move.managers;
 
 public class KellyTest {
-    private String kelly = "true";
+    private String kelly = "false";
 }
