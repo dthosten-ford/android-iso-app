@@ -30,19 +30,19 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-//public class ResourceProvider implements ResourceProviderInterface {
-//
-//    private final Context context;
-//
-//    public ResourceProvider(Context context) {
-//        this.context = context;
-//    }
+public class ResourceProvider implements ResourceProviderInterface {
+
+    private final Context context;
+
+    public ResourceProvider(Context context) {
+        this.context = context;
+    }
 //
 //    public Resources getResources() { return context.getResources(); }
 //
-//    public String getString(@StringRes int resId) {
-//        return context.getString(resId);
-//    }
+    public String getString(@StringRes int resId) {
+        return context.getString(resId);
+    }
 //
 //    public String getString(@StringRes int resId, Integer value) {
 //        return context.getString(resId, value);
@@ -127,4 +127,4 @@ import java.io.InputStreamReader;
 //    public boolean isRtl() {
 //       return View.LAYOUT_DIRECTION_RTL == context.getResources().getConfiguration().getLayoutDirection();
 //    }
-//}
+}
