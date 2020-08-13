@@ -17,8 +17,10 @@ interface VehicleAuthorizationDataManagerInterface {
 
     }
 
-    val XApiAuthorizationStatus: Int
-    val XApiAuthorizationStatus: Int
+    fun isPendingReset() : Boolean
+    fun xApiAuthorizationStatus() : Int
+    val vin: String
+    val XApiAuthorizationStatus: Any
     val pendingReset: Boolean
     val authorizationData: VehicleInfo
 }
