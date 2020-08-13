@@ -8,23 +8,7 @@
 
 package com.ford.androidutils.ui.glide;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
-
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.widget.ImageView;
-
-import com.bumptech.glide.DrawableTypeRequest;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.ford.utils.TextUtils;
-import com.ford.utils.qualifiers.ForApplication;
-
-import java.io.File;
-
-//public class GlideProvider implements GlideProviderInterface {
+public class GlideProvider implements GlideProviderInterface {
 //
 //    private static final String FILE_URI_PREFIX = "file:///";
 //    private static final String CONTENT_URI_PREFIX = "content://";
@@ -68,4 +52,4 @@ import java.io.File;
 //            view.setImageDrawable(circularBitmapDrawable);
 //        }
 //    }
-//}
+}
