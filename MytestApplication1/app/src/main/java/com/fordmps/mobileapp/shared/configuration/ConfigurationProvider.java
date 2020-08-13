@@ -11,13 +11,13 @@ package com.fordmps.mobileapp.shared.configuration;
 
 public class ConfigurationProvider implements ConfigurationProviderInterface {
 
-    private final ConfigurationFactory configurationFactory;
-
-    public ConfigurationProvider(ConfigurationFactory configurationFactory) {
-        this.configurationFactory = configurationFactory;
-    }
+//    private final ConfigurationFactory configurationFactory;
+//
+//    public ConfigurationProvider(ConfigurationFactory configurationFactory) {
+//        this.configurationFactory = configurationFactory;
+//    }
 
     public Configuration getConfiguration() {
-        return configurationFactory.getConfiguration();
+        return getConfiguration();
     }
 }
