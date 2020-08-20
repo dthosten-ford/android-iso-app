@@ -80,7 +80,7 @@ import com.fordmps.mobileapp.shared.events.UnboundViewEventBus;
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBusInterface;
 import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManager;
 import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManagerInterface;
-import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
+//import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProviderInterface;
 import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
 import com.fordmps.mobileapp.shared.utils.BitmapImageUtil;//Gowtham
@@ -124,7 +124,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     public final ObservableField<String> vehicleChargingStatus = new ObservableField<>("");
     public final ObservableField<String> authStateHeader = new ObservableField<>("");
     public final ObservableField<CharSequence> authStateDescription = new ObservableField<>("");
-    public final ObservableInt vehicleDetailButtonLinkText = new ObservableInt(R.string.move_landing_vehicle_details_link);
+    public final ObservableInt vehicleDetailButtonLinkText = new ObservableInt( R.string.move_landing_vehicle_details_link);
     private final ErrorMessageUtil errorMessageUtil;
     private final VehicleImageLoadedEvent vehicleImageLoadedEvent;
 //    private final NgsdnVehicleProvider ngsdnVehicleProvider;
