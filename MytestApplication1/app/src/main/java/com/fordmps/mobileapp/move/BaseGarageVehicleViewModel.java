@@ -174,7 +174,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable))
                             .compose(rxSchedulingHelper.observableSchedulers(Threads.COMPUTATION))
                             .subscribe(BaseGarageVehicleViewModel.this::setVehicleImage, Throwable::printStackTrace);
-                }
+                }//Renee
 
                 @Override
                 public void onLoadFailed(Exception e, Drawable errorDrawable) {
