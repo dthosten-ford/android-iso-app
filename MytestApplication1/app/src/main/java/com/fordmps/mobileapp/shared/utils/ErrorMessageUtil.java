@@ -8,6 +8,8 @@
 
 package com.fordmps.mobileapp.shared.utils;
 
+import androidx.annotation.StringRes;
+
 public interface ErrorMessageUtil {
 
 //    private final NetworkingErrorUtil networkingErrorUtil;
@@ -40,9 +42,7 @@ public interface ErrorMessageUtil {
 //        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message), true));
 //    }
 //
-//    public void showErrorMessage(@StringRes int message, int duration) {
-//        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message, duration), true));
-//    }
+    public void showErrorMessage(@StringRes int message, int duration);
 //
 //    public void closeErrorMessage() {
 //        transientDataProvider.save(new HideInfoMessageBannerUseCase());

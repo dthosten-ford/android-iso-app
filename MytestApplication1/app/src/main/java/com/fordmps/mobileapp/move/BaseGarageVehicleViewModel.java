@@ -554,12 +554,6 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     break;
                 case PRIMARY_AUTH_PENDING:
                     break;
-                if (configurationProvider.getConfiguration().isTmcMigrationEnabled()) {
-                    setAuthTextForPendingWithTmcEnabled();
-                } else {
-                    setAuthPendingTextForTcuSource(updatedVehicleInfo);
-                    vehicleControlsViewModel.checkVehicleState(updatedVehicleInfo);
-                }
                 case SECONDARY_AUTH_PENDING:
                     setAuthStateText(R.string.move_landing_activation_pending_heading, R.string.move_landing_activation_pending_secondary_user);
                     vehicleControlsViewModel.checkVehicleState(updatedVehicleInfo);
