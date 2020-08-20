@@ -21,7 +21,9 @@ interface VehicleAuthorizationDataManager {
 
     }
     fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability>>{
-        return Observable.just(Pair(VehicleInfoImpl(), VehicleCapability()))
+        val pair: Pair<VehicleInfo, VehicleCapability> =
+            Pair(VehicleInfoImpl(), VehicleCapability())
+        return Observable.just(pair)
     }
 
     fun isPendingReset() : Boolean
