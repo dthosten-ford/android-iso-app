@@ -14,9 +14,9 @@ package com.ford.dashboard.models;
 
 import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
+import com.google.common.base.Optional;
 
 import java.util.Map;
-import java.util.Optional;
 
 public interface VehicleInfo extends Vehicle {
     void setVehicleSource(int vehicleSource);

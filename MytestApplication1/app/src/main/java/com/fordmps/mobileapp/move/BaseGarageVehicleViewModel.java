@@ -59,6 +59,7 @@ import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
 import com.fordmps.viewutils.R;
+import com.google.common.base.Optional;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
