@@ -13,7 +13,7 @@ import com.ford.vehiclecommon.models.Vehicle
 //import io.reactivex.functions.BiFunction
 //import javax.inject.Inject
 
-interface VehicleAuthorizationDataManagerInterface {
+interface VehicleAuthorizationDataManager {
     fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
 
     }

@@ -12,6 +12,7 @@ package com.ford.dashboard.models;
 //import com.ford.vehiclecommon.models.VehicleAuthStatus;
 //import com.ford.vehiclecommon.models.VehicleStatus;
 
+import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
 
 import java.util.Map;
@@ -46,4 +47,8 @@ public interface VehicleInfo extends Vehicle {
     boolean isAuthorized();
 
     Map<VehicleStatus, VehicleStatus> getVehicleStatus();
+
+    VehicleDetails getVehicleDetails();
+
+    Object getAuthorization();
 }

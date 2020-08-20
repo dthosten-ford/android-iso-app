@@ -34,7 +34,7 @@ import com.ford.androidutils.ui.glide.GlideProvider;
 import com.ford.applink.managers.ActiveVhaAlertsManager;
 import com.ford.dashboard.models.VehicleInfo;
 import com.ford.ngsdnuser.providers.AccountInfoProvider;
-import com.ford.ngsdnvehicle.providers.NgsdnVehicleProviderInterface;
+import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
 import com.ford.paak.PaakAdapter;
 import com.ford.rxutils.schedulers.RxSchedulingHelper;
 import com.ford.rxutils.schedulers.Threads;
@@ -96,7 +96,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     private final ErrorMessageUtil errorMessageUtil;
     private final VehicleImageLoadedEvent vehicleImageLoadedEvent;
 //    private final NgsdnVehicleProvider ngsdnVehicleProvider;
-    private final NgsdnVehicleProviderInterface ngsdnVehicleProvider;//Dustin: changed to an Interface, break dependency on a Singleton
+    private final NgsdnVehicleProvider ngsdnVehicleProvider;//Dustin: changed to an Interface, break dependency on a Singleton
 //    protected final ConfigurationProvider configurationProvider;
     protected final ConfigurationProviderInterface configurationProvider;//Dustin: Goal: Completely remove this
 //    private final VinLookupProvider vinLookupProvider;
@@ -117,7 +117,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
 //    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
     protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
 //    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
-    protected VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager;
+    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
     private VehicleInfoProvider vehicleInfoProvider;
     private String myVehiclePrefix;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
 //    private TransientDataProvider transientDataProvider;
@@ -138,14 +138,14 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                                          VehicleImageLoadedEvent vehicleImageLoadedEvent,
                                          ResourceProvider resourceProvider,
                                          VehicleCapabilitiesManager vehicleCapabilitiesManager,
-                                         NgsdnVehicleProviderInterface ngsdnVehicleProvider,
+                                         NgsdnVehicleProvider ngsdnVehicleProvider,
                                          ConfigurationProviderInterface configurationProvider,
                                          SharedPrefsUtil sharedPrefsUtil, ErrorMessageUtil errorMessageUtil,
                                          RxSchedulingHelper rxSchedulingHelper, VinLookupProvider vinLookupProvider,
                                          ChargingStatusUtil chargingStatusUtil, AccountInfoProvider accountInfoProvider,
                                          VehicleControlManager vehicleControlManager,
                                          PaakAdapter paakAdapter,
-                                         VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager) {
+                                         VehicleAuthorizationDataManager vehicleAuthorizationDataManager) {
         this.vehicleInfo = vehicleInfo;
         this.activeVhaAlertsManagerInterface = activeVhaAlertsManagerInterface;
         this.eventBus = eventBus;
@@ -472,6 +472,9 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
 
     public void setVehicleRecallAndFsa(VehicleRecallAndFsa vehicleRecallAndFsa) {
         setAlertIcon(vehicleRecallAndFsa);
+    }
+//20200820 Dustin added: Test needed it, this class did NOT have it as we may be on an outdated version of the clas
+    public void updateCommandAndControlButtonsVisibilityXApi() {
     }
 
     @FunctionalInterface

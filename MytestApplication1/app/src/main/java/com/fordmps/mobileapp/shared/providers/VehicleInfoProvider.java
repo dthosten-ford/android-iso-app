@@ -15,6 +15,8 @@ import io.reactivex.Observable;
 
 public interface VehicleInfoProvider {
     Observable<VehicleInfo> getVehicleStatus(VehicleInfo vehicleInfo, CacheTransformerProvider.Policy networkOnly);
+
+    Observable<VehicleInfo> getVehicleAuthStatus(VehicleInfo vehicleInfo);
 //    Observable<List<VehicleInfo>> getVehicles();
 //
 //    Observable<VehicleInfo> getVehicle(final String vin);
@@ -28,7 +30,7 @@ public interface VehicleInfoProvider {
 //
 //    Observable<VehicleDetails> getVehicleDetails(Vehicle vehicle, CacheTransformerProvider.Policy policy);
 //
-//    Observable<VehicleInfo> getVehicleInfo(final String vin, CacheTransformerProvider.Policy cachePolicy);
+    Observable<VehicleInfo> getVehicleInfo(final String vin, CacheTransformerProvider.Policy cachePolicy);
 //
 //    Single<NgsdnWifiDataUsageResponse> getWifiDataPlanAndUsage(final String vin);
 //
