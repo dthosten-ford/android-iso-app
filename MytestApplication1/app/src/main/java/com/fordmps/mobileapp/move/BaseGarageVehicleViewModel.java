@@ -244,6 +244,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         return vehicleInfo.getLocalizedModelName().or(vehicleInfo.getModelName());
     }
 
+
     public String getVin() {
         return vehicleInfo.getVin();
     }
