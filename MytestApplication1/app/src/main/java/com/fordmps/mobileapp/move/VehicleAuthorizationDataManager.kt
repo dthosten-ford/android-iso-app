@@ -3,6 +3,7 @@ package com.fordmps.mobileapp.move
 
 import com.ford.dashboard.models.VehicleInfo
 import com.ford.vehiclecommon.models.Vehicle
+import java.util.*
 
 //
 //import com.ford.repo.capabilities.VehicleCapabilitiesRepository
@@ -17,13 +18,15 @@ interface VehicleAuthorizationDataManager {
     fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
 
     }
-//    fun getAuthorizationData(vehicleInfo: VehicleInfo) {
-//
-//    }
+    fun  getAuthorizationData(vehicleInfo: VehicleInfo) : Observable<Objects> {
+
+    }
 
     fun isPendingReset() : Boolean
     fun xApiAuthorizationStatus() : Int
-    val authorizationData: VehicleInfo
+//    val authorizationData: VehicleInfo
+
+    //    val authorizationData: VehicleInfo
     val vin: String
     val XApiAuthorizationStatus: Vehicle.Authorization
     val pendingReset: Boolean

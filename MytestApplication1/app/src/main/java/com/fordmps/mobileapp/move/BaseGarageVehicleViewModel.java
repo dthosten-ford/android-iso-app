@@ -12,9 +12,10 @@ package com.fordmps.mobileapp.move;
 * 1) X Clone project locally
 * 2) X make a new file, commit,  and push a commit (confirm permissions) (jp branch)
 * 3) X test a rebase (git pull -- rebase)
-* 4) break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
-* 5) fix external references.
-* 6) fix internal references
+* 4) x break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
+* 5) x fix external references.
+* 6) x fix internal references
+* 7) fix other compile errors
 *
 * */
 

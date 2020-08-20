@@ -40,7 +40,7 @@ public interface VehicleInfo extends Vehicle {
 
     Optional<String> getNickname();
 
-    String getLocalizedModelName();
+    Optional<String> getLocalizedModelName();
 
     int getSDNSourceForTCU();
 
