@@ -10,4 +10,6 @@ public interface VehicleControlOptionsModel {
     boolean isLockUnlockEligible();
 
     boolean isCabinCargoUnlockEligible();
+
+    boolean isExtendStartVisible();
 }

@@ -8,12 +8,12 @@
 
 package com.fordmps.mobileapp.shared.providers;
 
-import androidx.annotation.Nullable;
-
-import com.ford.locale.ServiceLocaleProvider;
-import com.ford.vehiclecommon.models.Vehicle;
-import com.fordmps.mobileapp.configuration.BuildConfigWrapper;
-import com.fordmps.mobileapp.shared.moduleconfigs.VehicleImageApiConfig;
+//import androidx.annotation.Nullable;
+//
+//import com.ford.locale.ServiceLocaleProvider;
+//import com.ford.vehiclecommon.models.Vehicle;
+//import com.fordmps.mobileapp.configuration.BuildConfigWrapper;
+//import com.fordmps.mobileapp.shared.moduleconfigs.VehicleImageApiConfig;
 
 //public class VehicleImageUrlProvider implements VehicleImageUrlProviderInterface {
 //    private final ServiceLocaleProvider serviceLocaleProvider;

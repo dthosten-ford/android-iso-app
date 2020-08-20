@@ -8,58 +8,47 @@
 
 package com.fordmps.mobileapp.shared.utils;
 
-import androidx.annotation.StringRes;
+public interface ErrorMessageUtil {
 
-import com.ford.networkutils.utils.NetworkingErrorUtil;
-import com.fordmps.viewutils.R;
-import com.fordmps.mobileapp.shared.InfoMessage;
-import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
-import com.fordmps.mobileapp.shared.datashare.usecases.HideInfoMessageBannerUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.InfoMessageBannerUseCase;
-
-import javax.inject.Inject;
-
-public class ErrorMessageUtil {
-
-    private final NetworkingErrorUtil networkingErrorUtil;
-    private TransientDataProvider transientDataProvider;
-
-    @Inject
-    public ErrorMessageUtil(NetworkingErrorUtil networkingErrorUtil, TransientDataProvider transientDataProvider) {
-        this.networkingErrorUtil = networkingErrorUtil;
-        this.transientDataProvider = transientDataProvider;
-    }
-
-    public void showNetworkError(Throwable throwable) {
-        showNetworkError(getErrorStatusCode(throwable));
-    }
-
-    public int getErrorStatusCode(Throwable throwable) {
-        return networkingErrorUtil.getErrorStatusCode(throwable);
-    }
-
-    public void showNetworkError(int statusCode) {
-        final int errorMessage = getErrorMessage(statusCode);
-        showErrorMessage(errorMessage);
-    }
-
-    public void showPersistentErrorMessage(@StringRes int message) {
-        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message), false));
-    }
-
-    public void showErrorMessage(@StringRes int message) {
-        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message), true));
-    }
-
-    public void showErrorMessage(@StringRes int message, int duration) {
-        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message, duration), true));
-    }
-
-    public void closeErrorMessage() {
-        transientDataProvider.save(new HideInfoMessageBannerUseCase());
-    }
-
-    private int getErrorMessage(int statusCode) {
-        return networkingErrorUtil.isConnectivityError(statusCode) ? R.string.common_error_checkConnection : R.string.common_error_something_went_wrong;
-    }
+//    private final NetworkingErrorUtil networkingErrorUtil;
+//    private TransientDataProvider transientDataProvider;
+//
+//    @Inject
+//    public ErrorMessageUtil(NetworkingErrorUtil networkingErrorUtil, TransientDataProvider transientDataProvider) {
+//        this.networkingErrorUtil = networkingErrorUtil;
+//        this.transientDataProvider = transientDataProvider;
+//    }
+//
+//    public void showNetworkError(Throwable throwable) {
+//        showNetworkError(getErrorStatusCode(throwable));
+//    }
+//
+//    public int getErrorStatusCode(Throwable throwable) {
+//        return networkingErrorUtil.getErrorStatusCode(throwable);
+//    }
+//
+//    public void showNetworkError(int statusCode) {
+//        final int errorMessage = getErrorMessage(statusCode);
+//        showErrorMessage(errorMessage);
+//    }
+//
+//    public void showPersistentErrorMessage(@StringRes int message) {
+//        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message), false));
+//    }
+//
+//    public void showErrorMessage(@StringRes int message) {
+//        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message), true));
+//    }
+//
+//    public void showErrorMessage(@StringRes int message, int duration) {
+//        transientDataProvider.save(new InfoMessageBannerUseCase(new InfoMessage(InfoMessage.ERROR, message, duration), true));
+//    }
+//
+//    public void closeErrorMessage() {
+//        transientDataProvider.save(new HideInfoMessageBannerUseCase());
+//    }
+//
+//    private int getErrorMessage(int statusCode) {
+//        return networkingErrorUtil.isConnectivityError(statusCode) ? R.string.common_error_checkConnection : R.string.common_error_something_went_wrong;
+//    }
 }

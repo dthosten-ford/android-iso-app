@@ -8,39 +8,39 @@
 
 package com.ford.vinlookup.managers;
 
-import com.ford.androidutils.CacheUtil;
-import com.ford.androidutils.validators.VinValidator;
-import com.ford.msdncommon.models.MSDNError;
-import com.ford.networkutils.interceptors.NgsdnNetworkTransformer;
-import com.ford.networkutils.utils.NetworkingErrorUtil;
-import com.ford.networkutils.utils.StatusCodes;
-import com.ford.ngsdncommon.models.NgsdnException;
-import com.ford.ngsdnvehicle.models.NgsdnVehicle;
-import com.ford.ngsdnvehicle.repositories.VehicleDatabase;
-import com.ford.rxutils.schedulers.RxSchedulingHelper;
-import com.ford.rxutils.schedulers.Threads;
-import com.ford.utils.providers.LocaleProvider;
-import com.ford.vehiclecommon.models.VehicleVinType;
-import com.ford.vinlookup.models.EslAddVehicleRequest;
-import com.ford.vinlookup.models.VinDetailsLookup;
-import com.ford.vinlookup.models.VinDetailsLookupResponse;
-import com.ford.vinlookup.models.VinLookup;
-import com.ford.vinlookup.models.VinLookupError;
-import com.ford.vinlookup.models.VinLookupEslResponse;
-import com.ford.vinlookup.models.VinLookupResponse;
-import com.ford.vinlookup.repositories.VinDetailsLookupRepository;
-import com.ford.vinlookup.repositories.VinLookupRepository;
-import com.ford.vinlookup.services.VinLookupService;
-import com.google.common.base.Optional;
-
-import io.reactivex.Completable;
-import io.reactivex.Single;
-import io.reactivex.SingleSource;
-import io.reactivex.functions.Function;
-
-import static com.ford.vinlookup.models.VinLookup.DIESEL_FUEL_TYPE_VALUE;
-import static com.ford.vinlookup.models.VinLookup.ELECTRIC_FUEL_TYPE_VALUE;
-import static com.ford.vinlookup.models.VinLookup.PLUGIN_HYBRID_ELECTRIC_FUEL_TYPE_VALUE;
+//import com.ford.androidutils.CacheUtil;
+//import com.ford.androidutils.validators.VinValidator;
+//import com.ford.msdncommon.models.MSDNError;
+//import com.ford.networkutils.interceptors.NgsdnNetworkTransformer;
+//import com.ford.networkutils.utils.NetworkingErrorUtil;
+//import com.ford.networkutils.utils.StatusCodes;
+//import com.ford.ngsdncommon.models.NgsdnException;
+//import com.ford.ngsdnvehicle.models.NgsdnVehicle;
+//import com.ford.ngsdnvehicle.repositories.VehicleDatabase;
+//import com.ford.rxutils.schedulers.RxSchedulingHelper;
+//import com.ford.rxutils.schedulers.Threads;
+//import com.ford.utils.providers.LocaleProvider;
+//import com.ford.vehiclecommon.models.VehicleVinType;
+//import com.ford.vinlookup.models.EslAddVehicleRequest;
+//import com.ford.vinlookup.models.VinDetailsLookup;
+//import com.ford.vinlookup.models.VinDetailsLookupResponse;
+//import com.ford.vinlookup.models.VinLookup;
+//import com.ford.vinlookup.models.VinLookupError;
+//import com.ford.vinlookup.models.VinLookupEslResponse;
+//import com.ford.vinlookup.models.VinLookupResponse;
+//import com.ford.vinlookup.repositories.VinDetailsLookupRepository;
+//import com.ford.vinlookup.repositories.VinLookupRepository;
+//import com.ford.vinlookup.services.VinLookupService;
+//import com.google.common.base.Optional;
+//
+//import io.reactivex.Completable;
+//import io.reactivex.Single;
+//import io.reactivex.SingleSource;
+//import io.reactivex.functions.Function;
+//
+//import static com.ford.vinlookup.models.VinLookup.DIESEL_FUEL_TYPE_VALUE;
+//import static com.ford.vinlookup.models.VinLookup.ELECTRIC_FUEL_TYPE_VALUE;
+//import static com.ford.vinlookup.models.VinLookup.PLUGIN_HYBRID_ELECTRIC_FUEL_TYPE_VALUE;
 
 //public class VinLookupProvider implements VinLookupProviderInterface {
 //

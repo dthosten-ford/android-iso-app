@@ -30,9 +30,8 @@ import androidx.databinding.ObservableInt;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.ford.androidutils.SharedPrefsUtil;
-import com.ford.androidutils.ui.glide.GlideProviderInterface;
+import com.ford.androidutils.ui.glide.GlideProvider;
 import com.ford.applink.managers.ActiveVhaAlertsManager;
-import com.ford.applink.managers.ActiveVhaAlertsManagerInterface;
 import com.ford.dashboard.models.VehicleInfo;
 import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProviderInterface;
@@ -47,13 +46,13 @@ import com.ford.vinlookup.managers.VinLookupProvider;
 import com.fordmps.core.BaseLifecycleViewModel;
 import com.fordmps.data.enums.SdnType;
 import com.fordmps.mobileapp.find.categories.Country;
-import com.fordmps.mobileapp.move.managers.ChargingStatusUtilInterface;
+import com.fordmps.mobileapp.move.managers.ChargingStatusUtil;
 import com.fordmps.mobileapp.shared.configuration.ConfigurationProviderInterface;
-import com.fordmps.mobileapp.shared.datashare.ResourceProviderInterface;
+import com.fordmps.mobileapp.shared.datashare.ResourceProvider;
 import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
 import com.fordmps.mobileapp.shared.events.StartActivityEvent;
-import com.fordmps.mobileapp.shared.events.UnboundViewEventBusInterface;
-import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManagerInterface;
+import com.fordmps.mobileapp.shared.events.UnboundViewEventBus;
+import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManager;
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
 import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
@@ -63,7 +62,7 @@ import com.fordmps.viewutils.R;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 
-import static com.ford.vcs.models.Feature.FeatureNames.USER_RESET;
+import static com.ford.vcs.models.FeatureNames.USER_RESET;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_TMC;
 import static com.fordmps.mobileapp.move.vehiclehealthalerts.VehicleHealthAlertsUtil.getVhaSource;
@@ -103,20 +102,20 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
 //    private final VinLookupProvider vinLookupProvider;
     private final VinLookupProvider vinLookupProvider;
 //    private VehicleControlManager vehicleControlManager;
-    private VehicleControlManagerInterface vehicleControlManager;
+    private VehicleControlManager vehicleControlManager;
 //    private final ChargingStatusUtil chargingStatusUtil;
-    private final ChargingStatusUtilInterface chargingStatusUtil;
+    private final ChargingStatusUtil chargingStatusUtil;
 //    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
     protected PaakVehicleControlsViewModel vehicleControlsViewModel; //Dustin: Question: Should VM's ref VM's
 //    protected final ResourceProvider resourceProvider;
-    protected final ResourceProviderInterface resourceProvider;//Dustin: Goal: Completely remove this
+    protected final ResourceProvider resourceProvider;//Dustin: Goal: Completely remove this
     protected VehicleInfo vehicleInfo;
 //    protected final UnboundViewEventBus eventBus;
-    protected final UnboundViewEventBusInterface eventBus;
+    protected final UnboundViewEventBus eventBus;
     private ActiveVhaAlertsManager activeVhaAlertsManager;
-    private ActiveVhaAlertsManagerInterface activeVhaAlertsManagerInterface;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
+    private ActiveVhaAlertsManager activeVhaAlertsManagerInterface;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
 //    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
-    protected VehicleCapabilitiesManagerInterface vehicleCapabilitiesManager;
+    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
 //    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
     protected VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager;
     private VehicleInfoProvider vehicleInfoProvider;
@@ -130,21 +129,21 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     private boolean hasRecalls = false;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
 
     protected BaseGarageVehicleViewModel(VehicleInfo vehicleInfo,
-                                         ActiveVhaAlertsManagerInterface activeVhaAlertsManagerInterface,
-                                         GlideProviderInterface glideProvider,
+                                         ActiveVhaAlertsManager activeVhaAlertsManagerInterface,
+                                         GlideProvider glideProvider,
                                          VehicleImageUrlProvider vehicleImageUrlProvider,
-                                         UnboundViewEventBusInterface eventBus,
+                                         UnboundViewEventBus eventBus,
                                          TransientDataProvider transientDataProvider,
                                          VehicleInfoProvider vehicleInfoProvider,
                                          VehicleImageLoadedEvent vehicleImageLoadedEvent,
-                                         ResourceProviderInterface resourceProvider,
-                                         VehicleCapabilitiesManagerInterface vehicleCapabilitiesManager,
+                                         ResourceProvider resourceProvider,
+                                         VehicleCapabilitiesManager vehicleCapabilitiesManager,
                                          NgsdnVehicleProviderInterface ngsdnVehicleProvider,
                                          ConfigurationProviderInterface configurationProvider,
                                          SharedPrefsUtil sharedPrefsUtil, ErrorMessageUtil errorMessageUtil,
                                          RxSchedulingHelper rxSchedulingHelper, VinLookupProvider vinLookupProvider,
-                                         ChargingStatusUtilInterface chargingStatusUtil, AccountInfoProvider accountInfoProvider,
-                                         VehicleControlManagerInterface vehicleControlManager,
+                                         ChargingStatusUtil chargingStatusUtil, AccountInfoProvider accountInfoProvider,
+                                         VehicleControlManager vehicleControlManager,
                                          PaakAdapter paakAdapter,
                                          VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager) {
         this.vehicleInfo = vehicleInfo;

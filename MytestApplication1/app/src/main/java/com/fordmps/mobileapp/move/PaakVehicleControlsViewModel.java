@@ -15,6 +15,9 @@ public interface PaakVehicleControlsViewModel {
 
     void checkVehicleState(VehicleInfo vehicleInfo);
 
+    public interface Factory {
+    }
+
 //    public static class Factory {
 //        private final VehicleCommandManager vehicleCommandManager;
 //        private final ResourceProvider resourceProvider;

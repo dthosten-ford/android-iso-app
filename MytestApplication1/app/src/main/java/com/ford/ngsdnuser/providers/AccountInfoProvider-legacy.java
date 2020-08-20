@@ -8,41 +8,41 @@
 
 package com.ford.ngsdnuser.providers;
 
-import android.annotation.SuppressLint;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.ford.androidutils.CacheUtil;
-import com.ford.androidutils.SharedPrefsUtil;
-import com.ford.locale.ServiceLocaleProvider;
-import com.ford.networkutils.utils.StatusCodes;
-import com.ford.ngsdnuser.repositories.AccountInfoRepository;
-import com.ford.rxutils.CacheTransformerProvider;
-import com.ford.rxutils.RxSchedulerProvider;
-import com.ford.userservice.devicemanagement.models.BaseUserServicesResponse;
-import com.ford.userservice.updateprofile.models.AccountProfile;
-import com.ford.userservice.updateprofile.models.PrivacyPreference;
-import com.ford.userservice.updateprofile.models.UpdateMarketingLanguageRequest;
-import com.ford.userservice.updateprofile.models.UpdateProfileRequest;
-import com.ford.userservice.updateprofile.models.UpdateUnitOfMeasureRequest;
-import com.ford.utils.TextUtils;
-import com.google.common.base.Optional;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Callable;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import dagger.Lazy;
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.subjects.PublishSubject;
-
-import static com.ford.rxutils.CacheTransformerProvider.Policy.LOCAL_THEN_NETWORK_IF_CACHE_STALE;
+//import android.annotation.SuppressLint;
+//
+//import androidx.annotation.NonNull;
+//import androidx.annotation.Nullable;
+//
+//import com.ford.androidutils.CacheUtil;
+//import com.ford.androidutils.SharedPrefsUtil;
+//import com.ford.locale.ServiceLocaleProvider;
+//import com.ford.networkutils.utils.StatusCodes;
+//import com.ford.ngsdnuser.repositories.AccountInfoRepository;
+//import com.ford.rxutils.CacheTransformerProvider;
+//import com.ford.rxutils.RxSchedulerProvider;
+//import com.ford.userservice.devicemanagement.models.BaseUserServicesResponse;
+//import com.ford.userservice.updateprofile.models.AccountProfile;
+//import com.ford.userservice.updateprofile.models.PrivacyPreference;
+//import com.ford.userservice.updateprofile.models.UpdateMarketingLanguageRequest;
+//import com.ford.userservice.updateprofile.models.UpdateProfileRequest;
+//import com.ford.userservice.updateprofile.models.UpdateUnitOfMeasureRequest;
+//import com.ford.utils.TextUtils;
+//import com.google.common.base.Optional;
+//
+//import java.util.ArrayList;
+//import java.util.Iterator;
+//import java.util.List;
+//import java.util.concurrent.Callable;
+//
+//import javax.inject.Inject;
+//import javax.inject.Singleton;
+//
+//import dagger.Lazy;
+//import io.reactivex.Observable;
+//import io.reactivex.ObservableSource;
+//import io.reactivex.subjects.PublishSubject;
+//
+//import static com.ford.rxutils.CacheTransformerProvider.Policy.LOCAL_THEN_NETWORK_IF_CACHE_STALE;
 
 //@Singleton
 //public class AccountInfoProvider extends AccountInfoProviderInterface {

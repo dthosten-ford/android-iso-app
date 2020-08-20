@@ -79,7 +79,7 @@ import io.reactivex.subjects.PublishSubject;
 import static com.ford.applink.providers.VcsAppLinkCapabilityProvider.VhaType.VHA_NOT_SUPPORTED;
 import static com.ford.ngsdnvehicle.models.ActiveAlertVinData.SOURCE_APPLINK;
 import static com.ford.ngsdnvehicle.models.ActiveAlertVinData.SOURCE_TCU;
-import static com.ford.vcs.models.Feature.FeatureNames.USER_RESET;
+import static com.ford.vcs.models.FeatureNames.USER_RESET;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_NGSDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_TMC;
