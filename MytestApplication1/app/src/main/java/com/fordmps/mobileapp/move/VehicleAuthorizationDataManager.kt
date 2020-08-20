@@ -19,8 +19,8 @@ interface VehicleAuthorizationDataManager {
     fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
 
     }
-    fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability?>>{
-        return Observable.just(Pair(VehicleInfoImpl(),null))
+    fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability>>{
+        return Observable.just(Pair(VehicleInfoImpl(),VehicleCapability()))
     }
 
     fun isPendingReset() : Boolean
