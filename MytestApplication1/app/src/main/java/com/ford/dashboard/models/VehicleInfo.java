@@ -46,7 +46,7 @@ public interface VehicleInfo extends Vehicle {
 
     boolean isAuthorized();
 
-    Optional<VehicleStatus> getVehicleStatus();
+    Map<VehicleStatus, VehicleStatus> getVehicleStatus();
 
     VehicleDetails getVehicleDetails();
 
