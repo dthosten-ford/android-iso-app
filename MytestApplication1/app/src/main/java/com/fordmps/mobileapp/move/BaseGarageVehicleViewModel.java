@@ -34,27 +34,27 @@ import com.ford.androidutils.ui.glide.GlideProviderInterface;
 import com.ford.applink.managers.ActiveVhaAlertsManager;
 import com.ford.applink.managers.ActiveVhaAlertsManagerInterface;
 import com.ford.dashboard.models.VehicleInfo;
-import com.ford.ngsdnuser.providers.AccountInfoProviderInterface;
+import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProviderInterface;
 import com.ford.paak.PaakAdapter;
-import com.ford.rxutils.schedulers.RxSchedulingHelperInterface;
+import com.ford.rxutils.schedulers.RxSchedulingHelper;
 import com.ford.rxutils.schedulers.Threads;
 import com.ford.utils.BitmapImageUtil;
 import com.ford.utils.TextUtils;
 import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleStatus;
-import com.ford.vinlookup.managers.VinLookupProviderInterface;
+import com.ford.vinlookup.managers.VinLookupProvider;
 import com.fordmps.core.BaseLifecycleViewModel;
 import com.fordmps.data.enums.SdnType;
 import com.fordmps.mobileapp.find.categories.Country;
 import com.fordmps.mobileapp.move.managers.ChargingStatusUtilInterface;
 import com.fordmps.mobileapp.shared.configuration.ConfigurationProviderInterface;
 import com.fordmps.mobileapp.shared.datashare.ResourceProviderInterface;
-import com.fordmps.mobileapp.shared.datashare.TransientDataProviderInterface;
+import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
 import com.fordmps.mobileapp.shared.events.StartActivityEvent;
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBusInterface;
 import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManagerInterface;
-import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProviderInterface;
+import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
 import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
@@ -64,9 +64,6 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 import static com.ford.vcs.models.Feature.FeatureNames.USER_RESET;
-import static com.ford.vehiclecommon.models.Vehicle.Authorization.AUTHORIZED;
-import static com.ford.vehiclecommon.models.Vehicle.Authorization.PRIMARY_AUTH_PENDING;
-import static com.ford.vehiclecommon.models.Vehicle.Authorization.SECONDARY_AUTH_PENDING;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_TMC;
 import static com.fordmps.mobileapp.move.vehiclehealthalerts.VehicleHealthAlertsUtil.getVhaSource;
@@ -104,7 +101,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
 //    protected final ConfigurationProvider configurationProvider;
     protected final ConfigurationProviderInterface configurationProvider;//Dustin: Goal: Completely remove this
 //    private final VinLookupProvider vinLookupProvider;
-    private final VinLookupProviderInterface vinLookupProvider;
+    private final VinLookupProvider vinLookupProvider;
 //    private VehicleControlManager vehicleControlManager;
     private VehicleControlManagerInterface vehicleControlManager;
 //    private final ChargingStatusUtil chargingStatusUtil;
@@ -125,7 +122,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     private VehicleInfoProvider vehicleInfoProvider;
     private String myVehiclePrefix;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
 //    private TransientDataProvider transientDataProvider;
-    private TransientDataProviderInterface transientDataProvider;
+    private TransientDataProvider transientDataProvider;
     private PaakAdapter paakAdapter;
     private int vehicleHealthAlertsCount;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
     private String vin;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
@@ -135,9 +132,9 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     protected BaseGarageVehicleViewModel(VehicleInfo vehicleInfo,
                                          ActiveVhaAlertsManagerInterface activeVhaAlertsManagerInterface,
                                          GlideProviderInterface glideProvider,
-                                         VehicleImageUrlProviderInterface vehicleImageUrlProvider,
+                                         VehicleImageUrlProvider vehicleImageUrlProvider,
                                          UnboundViewEventBusInterface eventBus,
-                                         TransientDataProviderInterface transientDataProvider,
+                                         TransientDataProvider transientDataProvider,
                                          VehicleInfoProvider vehicleInfoProvider,
                                          VehicleImageLoadedEvent vehicleImageLoadedEvent,
                                          ResourceProviderInterface resourceProvider,
@@ -145,8 +142,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                                          NgsdnVehicleProviderInterface ngsdnVehicleProvider,
                                          ConfigurationProviderInterface configurationProvider,
                                          SharedPrefsUtil sharedPrefsUtil, ErrorMessageUtil errorMessageUtil,
-                                         RxSchedulingHelperInterface rxSchedulingHelper, VinLookupProviderInterface vinLookupProvider,
-                                         ChargingStatusUtilInterface chargingStatusUtil, AccountInfoProviderInterface accountInfoProvider,
+                                         RxSchedulingHelper rxSchedulingHelper, VinLookupProvider vinLookupProvider,
+                                         ChargingStatusUtilInterface chargingStatusUtil, AccountInfoProvider accountInfoProvider,
                                          VehicleControlManagerInterface vehicleControlManager,
                                          PaakAdapter paakAdapter,
                                          VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager) {
