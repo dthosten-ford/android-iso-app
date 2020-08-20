@@ -1,7 +1,8 @@
 package com.ford.vinlookup.managers;
 
-import io.reactivex.Maybe;
+
+import io.reactivex.Single;
 
 public interface VinLookupProvider {
-    Maybe isHybridElectricVehicle(String vin);
+    Single isHybridElectricVehicle(String vin);
 }

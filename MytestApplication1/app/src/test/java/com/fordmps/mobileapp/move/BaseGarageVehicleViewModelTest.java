@@ -21,8 +21,6 @@ import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
 import com.ford.paak.PaakAdapter;
 import com.ford.paak.bluetooth.events.BleEvents;
-import com.ford.recall.fsa.repo.common.VehicleRecallAndFsa;
-import com.ford.rxutils.CacheTransformerProvider;
 import com.ford.rxutils.schedulers.RxSchedulingHelper;
 import com.ford.rxutils.schedulers.Threads;
 import com.ford.vcs.models.Feature;
@@ -1209,7 +1207,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(true);
         when(updatedVehicleInfo.isPreAuthorized()).thenReturn(true);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VcsAppLinkCapabilityProvider.VhaType.VHA_2_0_TCU));
         VehicleControlOptionsModel optionsModel = mock(VehicleControlOptionsModel.class);
@@ -1227,7 +1225,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleInfo.getModelYear()).thenReturn("2016");
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(updatedVehicleInfo.getVin()).thenReturn(VIN);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VcsAppLinkCapabilityProvider.VhaType.VHA_2_0_APPLINK));
@@ -1257,7 +1255,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
     public void checkVehicleAuthStatus_tcuEnabledAndTcuIsNotAuthorizedAndAsdnAndAppLinkCompatible_doesNotCallVehicleHealthAlert() {
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_ASDN);
         setupAuthorizedVehicleStatus();
 
@@ -1314,7 +1312,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(resourceProvider.getString(R.string.move_landing_sync_connect_description)).thenReturn("");
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_ASDN);
         when(vehicleInfo.getModelYear()).thenReturn("2016");
         when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
@@ -1330,7 +1328,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.getModelYear()).thenReturn("2016");
         when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
         setupUnAuthorizedVehicleStatus();
@@ -1381,7 +1379,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
         when(mBitmapTypeRequest.toBytes(Bitmap.CompressFormat.JPEG, 70)).thenReturn(mBitmapRequestBuilder);
@@ -1406,7 +1404,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
         when(mBitmapTypeRequest.toBytes(Bitmap.CompressFormat.JPEG, 70)).thenReturn(mBitmapRequestBuilder);
@@ -1430,7 +1428,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.isTcuEnabled()).thenReturn(false);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
@@ -1456,7 +1454,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(Optional.of(vehicleDetails));
+        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
         when(vehicleInfo.isTcuEnabled()).thenReturn(false);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
@@ -1470,9 +1468,10 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         subject.checkVehicleAuthStatus();
         subject.launchVehicleDetails();
 
-        verify(transientDataProvider).save(new GarageVehicleSelectedVinUseCase(VIN,
+        GarageVehicleSelectedVinUseCase usecase = new GarageVehicleSelectedVinUseCase(VIN,
                 null, VEHICLE_DISPLAY_PREFIX, "My Transit Conn...",
-                "MODEL_YEAR Ford Transit Conn...", "none", MODEL_NAME));
+                "MODEL_YEAR Ford Transit Conn...", "none", MODEL_NAME);
+        verify(transientDataProvider).save(usecase);
     }
 
     @Test

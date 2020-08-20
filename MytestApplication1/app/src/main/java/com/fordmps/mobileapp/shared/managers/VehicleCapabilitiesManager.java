@@ -6,12 +6,11 @@ import com.fordmps.mobileapp.move.VehicleCapabilitiesResponse;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
 
 public interface VehicleCapabilitiesManager {
-    Completable getVhaTypeFromVehicleCapabilityService(String vin);
+    Observable<String> getVhaTypeFromVehicleCapabilityService(String vin);
 
     Observable<VehicleCapabilitiesResponse> getVehicleCapabilities();
 

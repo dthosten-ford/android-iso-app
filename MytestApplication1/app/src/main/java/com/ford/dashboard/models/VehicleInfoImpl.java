@@ -2,9 +2,8 @@ package com.ford.dashboard.models;
 
 import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
-
+import com.google.common.base.Optional;
 import java.util.Map;
-import java.util.Optional;
 
 public class VehicleInfoImpl implements VehicleInfo{
 
@@ -75,12 +74,12 @@ public class VehicleInfoImpl implements VehicleInfo{
 
     @Override
     public Optional<String> getNickname() {
-        return Optional.empty();
+        return null;
     }
 
     @Override
     public Optional<String> getLocalizedModelName() {
-        return Optional.empty();
+        return null;
     }
 
     @Override
