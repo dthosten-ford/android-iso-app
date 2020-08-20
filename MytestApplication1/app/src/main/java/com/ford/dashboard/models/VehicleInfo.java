@@ -16,8 +16,6 @@ import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
 import com.google.common.base.Optional;
 
-import java.util.Map;
-
 public interface VehicleInfo extends Vehicle {
     void setVehicleSource(int vehicleSource);
     void setVehicleStatus(VehicleStatus vehicleStatus);
@@ -46,7 +44,7 @@ public interface VehicleInfo extends Vehicle {
 
     boolean isAuthorized();
 
-    Map<VehicleStatus, VehicleStatus> getVehicleStatus();
+    Optional< VehicleStatus>  getVehicleStatus();
 
     VehicleDetails getVehicleDetails();
 

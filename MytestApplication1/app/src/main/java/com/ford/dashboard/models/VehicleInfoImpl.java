@@ -3,7 +3,6 @@ package com.ford.dashboard.models;
 import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
 import com.google.common.base.Optional;
-import java.util.Map;
 
 public class VehicleInfoImpl implements VehicleInfo{
 
@@ -93,7 +92,7 @@ public class VehicleInfoImpl implements VehicleInfo{
     }
 
     @Override
-    public Map<VehicleStatus, VehicleStatus> getVehicleStatus() {
+    public Optional<VehicleStatus> getVehicleStatus() {
         return null;
     }
 
