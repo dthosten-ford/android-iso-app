@@ -8,19 +8,20 @@
 
 package com.fordmps.mobileapp.move;
 /*
-* Steps:
-* 1) X Clone project locally
-* 2) X make a new file, commit,  and push a commit (confirm permissions) (jp branch)
-* 3) X test a rebase (git pull -- rebase)
-* 4) x break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
-* 5) x fix external references.
-* 6) x fix internal references
-* 7) fix other compile errors
-*
-* */
+ * Steps:
+ * 1) X Clone project locally
+ * 2) X make a new file, commit,  and push a commit (confirm permissions) (jp branch)
+ * 3) X test a rebase (git pull -- rebase)
+ * 4) x break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
+ * 5) x fix external references.
+ * 6) x fix internal references
+ * 7) fix other compile errors
+ *
+ * */
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.core.util.Pair;
@@ -63,6 +64,7 @@ import com.fordmps.viewutils.R;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.ford.vcs.models.FeatureNames.USER_RESET;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
@@ -94,35 +96,35 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     public final ObservableField<String> vehicleChargingStatus = new ObservableField<>("");
     public final ObservableField<String> authStateHeader = new ObservableField<>("");
     public final ObservableField<CharSequence> authStateDescription = new ObservableField<>("");
-    public final ObservableInt vehicleDetailButtonLinkText = new ObservableInt( R.string.move_landing_vehicle_details_link);
+    public final ObservableInt vehicleDetailButtonLinkText = new ObservableInt(R.string.move_landing_vehicle_details_link);
     private final ErrorMessageUtil errorMessageUtil;
     private final VehicleImageLoadedEvent vehicleImageLoadedEvent;
-//    private final NgsdnVehicleProvider ngsdnVehicleProvider;
+    //    private final NgsdnVehicleProvider ngsdnVehicleProvider;
     private final NgsdnVehicleProvider ngsdnVehicleProvider;//Dustin: changed to an Interface, break dependency on a Singleton
-//    protected final ConfigurationProvider configurationProvider;
+    //    protected final ConfigurationProvider configurationProvider;
     protected final ConfigurationProviderInterface configurationProvider;//Dustin: Goal: Completely remove this
-//    private final VinLookupProvider vinLookupProvider;
+    //    private final VinLookupProvider vinLookupProvider;
     private final VinLookupProvider vinLookupProvider;
-//    private VehicleControlManager vehicleControlManager;
+    //    private VehicleControlManager vehicleControlManager;
     private VehicleControlManager vehicleControlManager;
-//    private final ChargingStatusUtil chargingStatusUtil;
+    //    private final ChargingStatusUtil chargingStatusUtil;
     private final ChargingStatusUtil chargingStatusUtil;
-//    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
+    //    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
     protected PaakVehicleControlsViewModel vehicleControlsViewModel; //Dustin: Question: Should VM's ref VM's
-//    protected final ResourceProvider resourceProvider;
+    //    protected final ResourceProvider resourceProvider;
     protected final ResourceProvider resourceProvider;//Dustin: Goal: Completely remove this
     protected VehicleInfo vehicleInfo;
-//    protected final UnboundViewEventBus eventBus;
+    //    protected final UnboundViewEventBus eventBus;
     protected final UnboundViewEventBus eventBus;
     private ActiveVhaAlertsManager activeVhaAlertsManager;
     private ActiveVhaAlertsManager activeVhaAlertsManagerInterface;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
-//    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
+    //    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
     protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
-//    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
+    //    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
     protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
     private VehicleInfoProvider vehicleInfoProvider;
     private String myVehiclePrefix;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
-//    private TransientDataProvider transientDataProvider;
+    //    private TransientDataProvider transientDataProvider;
     private TransientDataProvider transientDataProvider;
     private PaakAdapter paakAdapter;
     private int vehicleHealthAlertsCount;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
@@ -172,9 +174,15 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     .asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap drawable, GlideAnimation glideAnimation) {
-                    Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable))
+                    Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable)
+                    ).subscribeOn(Schedulers.computation()).subscribe((bitmap) -> {
+                        BaseGarageVehicleViewModel.this.setVehicleImage(bitmap);
+                    }, (error) -> {
+                        error.printStackTrace();
+                    });
+                    /*Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable))
                             .compose(rxSchedulingHelper.observableSchedulers(Threads.COMPUTATION))
-                            .subscribe(BaseGarageVehicleViewModel.this::setVehicleImage, Throwable::printStackTrace);
+                            .subscribe(BaseGarageVehicleViewModel.this.setVehicleImage(drawable), {}, {});*/
                 }//Renee
 
                 @Override
@@ -183,7 +191,6 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                 }
             });
             showVehicleYearBrandModel();
-            //Dustin: Do we need to set this directly or can we raise a changeVin event?
             sharedPrefsUtil.setCurrentVehicleVin(vehicleInfo.getVin());
             updateFordScriptVisibility();
         }
@@ -256,7 +263,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         StartActivityEvent event = StartActivityEvent.build(this).activityName(VehicleDetailsActivity.class);//renee
         eventBus.send(event);
     }
-//Dustin: could we push the logic for TCU into vcManager?  perhaps create a rules class when to get a service?
+
+    //Dustin: could we push the logic for TCU into vcManager?  perhaps create a rules class when to get a service?
     private void checkAppLinkCompatibility(VehicleInfo vehicleInfo) {
         if (vehicleInfo.getSDNSourceForTCU() == Vehicle.SOURCE_NGSDN) {
             subscribeOnLifecycle(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(vehicleInfo.getVin()).subscribe(this::setupAppLinkVehicleDetails, Throwable::printStackTrace));
@@ -283,7 +291,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
             }
         }, Throwable::printStackTrace));
     }
-//Dustin: could we determine what logic to pass in here from the class injecting this?
+
+    //Dustin: could we determine what logic to pass in here from the class injecting this?
     public void updateRemoteStartVisibilityXApi() {
         //Dustin: can we remove all references to configProvider?
         if (configurationProvider.getConfiguration().isDashboardXApiPhase2Enabled()) {
@@ -295,7 +304,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     .subscribe(this::setVehicleControlVisibilityXapi, throwable -> showGenericErrorMessageAndHideLoadingSpinner()));
         }
     }
-//Dustin: this smells of convienence.
+
+    //Dustin: this smells of convienence.
     //Shashank
     public PaakVehicleControlsViewModel getVehicleControlsViewModel() {
         return vehicleControlsViewModel;
@@ -312,7 +322,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         this.vehicleHealthAlertsCount = vehicleHealthAlertsCount;
         setVehicleHealthAlertIcon();
     }
-//Dustin more lightweight display logic we could consolidate in the vehicleInfoDisplayManager()
+
+    //Dustin more lightweight display logic we could consolidate in the vehicleInfoDisplayManager()
     public String getBrandYearAndModel(String brand) {
         return vehicleInfo.getModelYear() + " " + brand + " " + vehicleInfo.getLocalizedModelName().or(vehicleInfo.getModelName());
     }
@@ -320,6 +331,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     public void setVehicleVisible() {
         vehicleControlsViewModel.setVehicleVisible();
     }
+
     //Dustin: can we bind to some object's property instead of using branching logic to call on and off methods?
     public void setVehicleNotVisible() {
         //Dustin: one VM directly calling another? Is that part of our architecture?
@@ -368,7 +380,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
             updateVehicleDataForAuthorizationStatus(updatedVehicleInfo);
         }
     }
-//Dustin: This logic looks like someone else could own it.
+
+    //Dustin: This logic looks like someone else could own it.
     private void setupAppLinkVehicleDetails(String vhaType) {
         boolean applinkCompatible = !vhaType.equals(VcsAppLinkCapabilityProvider.VhaType.VHA_NOT_SUPPORTED);
         if (applinkCompatible) {
@@ -423,7 +436,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
             }
         }
     }
-//Dustin: another place where dto's and binding may help.
+
+    //Dustin: another place where dto's and binding may help.
     private void setVehicleHealthAlertIcon() {
         if (!hasRecalls) {
             if (vehicleHealthAlertsCount > 0) {
@@ -463,7 +477,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         shouldShowCargoUnlock.set(cargoUnlockEnabled);
     }
 
-//Dustin bind bind bind.
+    //Dustin bind bind bind.
     private void setVehicleControlVisibilityXapi(VehicleControlOptionsModelXapi vehicleControlOptionsModel) {
         shouldShowVehicleControls.set(false);
         shouldShowOnlyLockUnlock.set(false);
@@ -475,7 +489,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     public void setVehicleRecallAndFsa(VehicleRecallAndFsa vehicleRecallAndFsa) {
         setAlertIcon(vehicleRecallAndFsa);
     }
-//20200820 Dustin added: Test needed it, this class did NOT have it as we may be on an outdated version of the clas
+
+    //20200820 Dustin added: Test needed it, this class did NOT have it as we may be on an outdated version of the clas
     public void updateCommandAndControlButtonsVisibilityXApi() {
     }
 
