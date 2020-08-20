@@ -14,6 +14,7 @@ package com.ford.dashboard.models;
 
 import com.ford.vehiclecommon.models.VehicleStatus;
 
+import java.util.Map;
 import java.util.Optional;
 
 public interface VehicleInfo extends Vehicle {
@@ -26,7 +27,7 @@ public interface VehicleInfo extends Vehicle {
     void setMasterResetAvailability(boolean resetAvailable);
     boolean isMasterResetAvailable();
 
-    int getModelYear();
+    String getModelYear();
 
     String getVin();
 
@@ -41,4 +42,8 @@ public interface VehicleInfo extends Vehicle {
     String getLocalizedModelName();
 
     int getSDNSourceForTCU();
+
+    boolean isAuthorized();
+
+    Map<VehicleStatus, VehicleStatus> getVehicleStatus();
 }

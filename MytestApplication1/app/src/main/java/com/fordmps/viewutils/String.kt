@@ -10,7 +10,7 @@ package com.fordmps.viewutils
      var ic_circle_alert_urgent: Int = 0
 
  }
-}
+
  public class StringKey{
      @JvmField
      var move_landing_activation_pending_message: Int = 0
@@ -62,8 +62,6 @@ package com.fordmps.viewutils
      @kotlin.jvm.JvmField
      var move_landing_vehicle_details_link: Int=0
 
-     //    move_landing_vehicle_details_link
-//     val move_landing_vehicle_details_link =0
  }
 public class R{
     companion object {
@@ -72,16 +70,4 @@ public class R{
 
         @kotlin.jvm.JvmField
         var string: StringKey=StringKey()
-
-        //        val string = StringKey.move_landing_vehicle_details_link
-//        lateinit StringKey string: StringKey.move_landing_vehicle_details_link
-//        @kotlin.jvm.JvmField
-//        var string: StringKey
-//    get() {
-//        return string
-//    }
-//    set(value) { string=value}
-//    }
-
-
-}
+}}
