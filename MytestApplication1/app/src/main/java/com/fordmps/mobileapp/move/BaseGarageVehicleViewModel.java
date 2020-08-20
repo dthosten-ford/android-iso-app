@@ -45,6 +45,7 @@ import com.ford.utils.BitmapImageUtil;
 import com.ford.utils.TextUtils;
 import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleStatus;
+import com.ford.vehiclehealth.models.VehicleAlertResponse;
 import com.ford.vinlookup.managers.VinLookupProvider;
 import com.fordmps.core.BaseLifecycleViewModel;
 import com.fordmps.data.enums.SdnType;

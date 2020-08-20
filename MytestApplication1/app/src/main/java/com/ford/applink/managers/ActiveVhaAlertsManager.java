@@ -1,8 +1,9 @@
 package com.ford.applink.managers;
 
-import io.reactivex.Completable;
+import com.ford.vehiclehealth.models.VehicleAlertResponse;
+
+import io.reactivex.Observable;
 
 public interface ActiveVhaAlertsManager {
-    Completable getActiveAlertsFromCacheThenNetwork(String vin, String source);
-    // Completable getActiveAlertsFromCacheThenNetwork(String vin, String source);
+    Observable<VehicleAlertResponse> getActiveAlertsFromCacheThenNetwork(String vin, String source);
 }
