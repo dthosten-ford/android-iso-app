@@ -1,3 +1,10 @@
 package com.ford.recall.fsa.repo.common;
 
-public interface VehicleRecallAndFsa{}
+import java.util.Collection;
+
+public interface VehicleRecallAndFsa{
+
+    Collection<Object> getRecallList();
+
+    Collection<Object> getFsaList();
+}
