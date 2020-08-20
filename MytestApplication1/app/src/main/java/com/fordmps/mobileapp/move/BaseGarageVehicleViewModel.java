@@ -33,6 +33,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.ford.androidutils.SharedPrefsUtil;
 import com.ford.androidutils.ui.glide.GlideProvider;
 import com.ford.applink.managers.ActiveVhaAlertsManager;
+import com.ford.applink.providers.VcsAppLinkCapabilityProvider;
 import com.ford.dashboard.models.VehicleInfo;
 import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
@@ -59,7 +60,6 @@ import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
 import com.fordmps.viewutils.R;
-import com.google.common.base.Optional;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;

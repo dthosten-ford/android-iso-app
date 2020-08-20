@@ -4,7 +4,8 @@ package com.fordmps.mobileapp.move
 import com.ford.dashboard.models.VehicleInfo
 import com.ford.dashboard.models.VehicleInfoImpl
 import com.ford.vehiclecommon.models.Vehicle
-import java.util.*
+import androidx.core.util.Pair
+
 
 //
 //import com.ford.repo.capabilities.VehicleCapabilitiesRepository
@@ -20,7 +21,7 @@ interface VehicleAuthorizationDataManager {
 
     }
     fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability>>{
-        return Observable.just(Pair(VehicleInfoImpl(),VehicleCapability()))
+        return Observable.just(Pair(VehicleInfoImpl(), VehicleCapability()))
     }
 
     fun isPendingReset() : Boolean
