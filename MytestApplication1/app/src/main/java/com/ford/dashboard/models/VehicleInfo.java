@@ -50,5 +50,5 @@ public interface VehicleInfo extends Vehicle {
 
     VehicleDetails getVehicleDetails();
 
-    Object getAuthorization();
+    String getAuthorization();
 }
