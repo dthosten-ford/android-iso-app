@@ -2,6 +2,7 @@
 package com.fordmps.mobileapp.move
 
 import com.ford.dashboard.models.VehicleInfo
+import com.ford.dashboard.models.VehicleInfoImpl
 import com.ford.vehiclecommon.models.Vehicle
 import java.util.*
 
@@ -10,7 +11,7 @@ import java.util.*
 //import com.ford.xapi.models.response.VehicleCapability
 //import com.ford.xapi.models.response.XapiAuthStatus
 //import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider
-//import io.reactivex.Observable
+import io.reactivex.Observable
 //import io.reactivex.functions.BiFunction
 //import javax.inject.Inject
 
@@ -18,8 +19,8 @@ interface VehicleAuthorizationDataManager {
     fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
 
     }
-    fun  getAuthorizationData(vehicleInfo: VehicleInfo) : Observable<Objects> {
-
+    fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability?>>{
+        return Observable.just(Pair(VehicleInfoImpl(),null))
     }
 
     fun isPendingReset() : Boolean
