@@ -259,7 +259,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
 //Dustin: could we push the logic for TCU into vcManager?  perhaps create a rules class when to get a service?
     private void checkAppLinkCompatibility(VehicleInfo vehicleInfo) {
         if (vehicleInfo.getSDNSourceForTCU() == Vehicle.SOURCE_NGSDN) {
-            subscribeOnLifecycle(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(vehicleInfo.getVin()).subscribe(this::setupAppLinkVehicleDetails, Throwable::printStackTrace));
+            subscribeOnLifecycle(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(vehicleInfo.getVin())
+                    .subscribe(this::setupAppLinkVehicleDetails, Throwable::printStackTrace));
         }
     }
 
