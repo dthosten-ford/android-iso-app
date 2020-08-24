@@ -460,6 +460,14 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                                 : Observable.just(vehicleControlOptionsModel))
                 .subscribe(this::setVehicleControlVisibility, throwable -> showGenericErrorMessageAndHideLoadingSpinner()));
     }
+    private void setVehicleControlsWithVcsDupeTest(String vin) {
+        subscribeOnLifecycle(vehicleControlManager.getVehicleControlOptions(vin)
+                .flatMap(vehicleControlOptionsModel ->
+                        vehicleControlOptionsModel.isPaakCapable() && configurationProvider.getConfiguration().isPaakEnabled()
+                                ? paakAdapter.init().onErrorComplete().andThen(Observable.just(vehicleControlOptionsModel))
+                                : Observable.just(vehicleControlOptionsModel))
+                .subscribe(this::setVehicleControlVisibility, throwable -> showGenericErrorMessageAndHideLoadingSpinner()));
+    }
 
     private void setVehicleControlVisibility(VehicleControlOptionsModel vehicleControlOptionsModel) {
         boolean lightsAndHornEnabled = vehicleControlOptionsModel.isLightsAndHornEligible();
