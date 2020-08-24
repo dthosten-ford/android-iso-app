@@ -5,6 +5,6 @@ public interface VehicleControlOptionsModelXapi {
 
     boolean isPaakCapable();
 
-    RemoteStartState getRemoteLockState();
+    RemoteCommandState getRemoteLockState();
 //    ObservableSource<? extends VehicleControlOptionsModelXapi> isPaakCapable();
 }

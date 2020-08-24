@@ -97,7 +97,7 @@ public class VehicleInfoImpl implements VehicleInfo{
     }
 
     @Override
-    public VehicleDetails getVehicleDetails() {
+    public Optional<VehicleDetails> getVehicleDetails() {
         return null;
     }
 

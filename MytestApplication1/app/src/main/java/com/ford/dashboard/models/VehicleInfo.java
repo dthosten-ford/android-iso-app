@@ -46,7 +46,7 @@ public interface VehicleInfo extends Vehicle {
 
     Optional< VehicleStatus>  getVehicleStatus();
 
-    VehicleDetails getVehicleDetails();
+    Optional<VehicleDetails> getVehicleDetails();
 
     String getAuthorization();
 }
