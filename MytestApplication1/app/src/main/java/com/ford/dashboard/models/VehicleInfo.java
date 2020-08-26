@@ -47,6 +47,7 @@ public interface VehicleInfo extends Vehicle {
     Optional< VehicleStatus>  getVehicleStatus();
 
     Optional<VehicleDetails> getVehicleDetails();
+//    VehicleDetails getVehicleDetails();
 
-    String getAuthorization();
+    Optional<com.ford.vehiclecommon.models.Vehicle.Authorization> getAuthorization();
 }

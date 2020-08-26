@@ -5,6 +5,7 @@ import com.ford.dashboard.models.VehicleInfo
 import com.ford.dashboard.models.VehicleInfoImpl
 import com.ford.vehiclecommon.models.Vehicle
 import androidx.core.util.Pair
+import com.ford.xapi.models.response.XapiAuthStatus
 
 
 //
@@ -32,7 +33,7 @@ interface VehicleAuthorizationDataManager {
 
     //    val authorizationData: VehicleInfo
     val vin: String
-    val XApiAuthorizationStatus: Vehicle.Authorization
+    val XApiAuthorizationStatus: XapiAuthStatus
     val pendingReset: Boolean
 }
 

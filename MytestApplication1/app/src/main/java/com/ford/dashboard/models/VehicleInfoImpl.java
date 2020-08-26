@@ -1,5 +1,6 @@
 package com.ford.dashboard.models;
 
+import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
 import com.google.common.base.Optional;
@@ -102,7 +103,7 @@ public class VehicleInfoImpl implements VehicleInfo{
     }
 
     @Override
-    public String getAuthorization() {
+    public Optional<Vehicle.Authorization> getAuthorization() {
         return null;
     }
 }

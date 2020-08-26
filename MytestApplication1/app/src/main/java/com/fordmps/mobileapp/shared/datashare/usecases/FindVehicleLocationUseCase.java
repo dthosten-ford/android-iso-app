@@ -1,3 +1,9 @@
 package com.fordmps.mobileapp.shared.datashare.usecases;
 
-public interface FindVehicleLocationUseCase{}
+import com.ford.dashboard.models.VehicleInfo;
+
+public class FindVehicleLocationUseCase{
+    public FindVehicleLocationUseCase(VehicleInfo vehicleInfo, boolean b) {
+
+    }
+}
