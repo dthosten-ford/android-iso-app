@@ -87,7 +87,7 @@ import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_TMC;
 import static com.fordmps.mobileapp.move.vehiclehealthalerts.VehicleHealthAlertsUtil.getVhaSource;
 
-
+//this is for the F150 team
 public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel implements BrandGarageBackground, GarageViewPagerItem {
 
     private static final String MANUAL_TRANSMISSION_TYPE = "M";
