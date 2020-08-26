@@ -98,7 +98,6 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
-
     protected static final String VIN = "VIN";
     protected static final String MODEL_NAME = "MODEL_NAME";
     protected static final String MODEL_YEAR = "MODEL_YEAR";
