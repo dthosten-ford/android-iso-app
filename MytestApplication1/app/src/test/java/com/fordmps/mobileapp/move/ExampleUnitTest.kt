@@ -1,4 +1,4 @@
-package com.example.mytestapplication1
+package com.fordmps.mobileapp.move
 
 import org.junit.Test
 
@@ -11,7 +11,7 @@ import org.junit.Assert.*
  */
 class ExampleUnitTest {
     @Test
-    fun addition_isCorrect() {
+    fun addition_isCorrecto() {
         assertEquals(4, 2 + 2)
     }
 }
