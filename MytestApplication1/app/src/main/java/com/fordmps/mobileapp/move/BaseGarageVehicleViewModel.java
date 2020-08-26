@@ -8,15 +8,20 @@
 
 package com.fordmps.mobileapp.move;
 /*
-* Steps:
-* 1) Clone project locally
-* 2) make a new file, commit,  and push a commit (confirm permissions) (jp branch)
-* 3) test a rebase (git pull -- rebase)
-* 4) break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
-* */
+ * Steps:
+ * 1) X Clone project locally
+ * 2) X make a new file, commit,  and push a commit (confirm permissions) (jp branch)
+ * 3) X test a rebase (git pull -- rebase)
+ * 4) x break out the fixes and have each person work on a file, rebasing and pushing it to the jp branch
+ * 5) x fix external references.
+ * 6) x fix internal references
+ * 7) fix other compile errors
+ *
+ * */
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.core.util.Pair;
@@ -28,61 +33,41 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.ford.androidutils.SharedPrefsUtil;
 import com.ford.androidutils.ui.glide.GlideProvider;
-import com.ford.androidutils.ui.glide.GlideProviderInterface;
 import com.ford.applink.managers.ActiveVhaAlertsManager;
-import com.ford.applink.managers.ActiveVhaAlertsManagerInterface;
 import com.ford.applink.providers.VcsAppLinkCapabilityProvider;
 import com.ford.dashboard.models.VehicleInfo;
 import com.ford.ngsdnuser.providers.AccountInfoProvider;
-import com.ford.ngsdnuser.providers.AccountInfoProviderInterface;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
-import com.ford.ngsdnvehicle.providers.NgsdnVehicleProviderInterface;
 import com.ford.paak.PaakAdapter;
-import com.ford.recall.fsa.repo.common.VehicleRecallAndFsa;
-import com.ford.rxutils.CacheTransformerProvider;
 import com.ford.rxutils.schedulers.RxSchedulingHelper;
-import com.ford.rxutils.schedulers.RxSchedulingHelperInterface;
 import com.ford.rxutils.schedulers.Threads;
+import com.ford.utils.BitmapImageUtil;
 import com.ford.utils.TextUtils;
 import com.ford.vehiclecommon.models.Vehicle;
 import com.ford.vehiclecommon.models.VehicleStatus;
 import com.ford.vehiclehealth.models.VehicleAlertResponse;
 import com.ford.vinlookup.managers.VinLookupProvider;
-import com.ford.vinlookup.managers.VinLookupProviderInterface;
-import com.ford.xapi.models.response.VehicleCapability;
-import com.ford.xapi.models.response.VehicleDetail;
 import com.fordmps.core.BaseLifecycleViewModel;
 import com.fordmps.data.enums.SdnType;
 import com.fordmps.mobileapp.find.categories.Country;
 import com.fordmps.mobileapp.move.managers.ChargingStatusUtil;
-import com.fordmps.mobileapp.move.managers.ChargingStatusUtilInterface;
-import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider;
 import com.fordmps.mobileapp.shared.configuration.ConfigurationProviderInterface;
 import com.fordmps.mobileapp.shared.datashare.ResourceProvider;
-import com.fordmps.mobileapp.shared.datashare.ResourceProviderInterface;
 import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
-import com.fordmps.mobileapp.shared.datashare.TransientDataProviderInterface;
-import com.fordmps.mobileapp.shared.datashare.usecases.FindCollisionCenterVehicleInfoUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.FindVehicleLocationUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.GarageVehicleSelectedVinUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.ProgressBarUseCase;
 import com.fordmps.mobileapp.shared.events.StartActivityEvent;
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBus;
-import com.fordmps.mobileapp.shared.events.UnboundViewEventBusInterface;
 import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManager;
-import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManagerInterface;
 import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProvider;
-import com.fordmps.mobileapp.shared.providers.VehicleImageUrlProviderInterface;
 import com.fordmps.mobileapp.shared.providers.VehicleInfoProvider;
-import com.fordmps.mobileapp.shared.utils.BitmapImageUtil;
 import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
 import com.fordmps.viewutils.R;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.schedulers.Schedulers;
 
-import static com.ford.vcs.models.Feature.FeatureNames.USER_RESET;
+import static com.ford.vcs.models.FeatureNames.USER_RESET;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_ASDN;
 import static com.ford.vehiclecommon.models.Vehicle.SOURCE_TMC;
 import static com.fordmps.mobileapp.move.vehiclehealthalerts.VehicleHealthAlertsUtil.getVhaSource;
@@ -115,33 +100,33 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     public final ObservableInt vehicleDetailButtonLinkText = new ObservableInt(R.string.move_landing_vehicle_details_link);
     private final ErrorMessageUtil errorMessageUtil;
     private final VehicleImageLoadedEvent vehicleImageLoadedEvent;
-//    private final NgsdnVehicleProvider ngsdnVehicleProvider;
-    private final NgsdnVehicleProviderInterface ngsdnVehicleProvider;//Dustin: changed to an Interface, break dependency on a Singleton
-//    protected final ConfigurationProvider configurationProvider;
+    //    private final NgsdnVehicleProvider ngsdnVehicleProvider;
+    private final NgsdnVehicleProvider ngsdnVehicleProvider;//Dustin: changed to an Interface, break dependency on a Singleton
+    //    protected final ConfigurationProvider configurationProvider;
     protected final ConfigurationProviderInterface configurationProvider;//Dustin: Goal: Completely remove this
-//    private final VinLookupProvider vinLookupProvider;
-    private final VinLookupProviderInterface vinLookupProvider;
-//    private VehicleControlManager vehicleControlManager;
-    private VehicleControlManagerInterface vehicleControlManager;
-//    private final ChargingStatusUtil chargingStatusUtil;
-    private final ChargingStatusUtilInterface chargingStatusUtil;
-//    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
-    protected PaakVehicleControlsViewModelInterface vehicleControlsViewModel; //Dustin: Question: Should VM's ref VM's
-//    protected final ResourceProvider resourceProvider;
-    protected final ResourceProviderInterface resourceProvider;//Dustin: Goal: Completely remove this
+    //    private final VinLookupProvider vinLookupProvider;
+    private final VinLookupProvider vinLookupProvider;
+    //    private VehicleControlManager vehicleControlManager;
+    private VehicleControlManager vehicleControlManager;
+    //    private final ChargingStatusUtil chargingStatusUtil;
+    private final ChargingStatusUtil chargingStatusUtil;
+    //    protected PaakVehicleControlsViewModel vehicleControlsViewModel;
+    protected PaakVehicleControlsViewModel vehicleControlsViewModel; //Dustin: Question: Should VM's ref VM's
+    //    protected final ResourceProvider resourceProvider;
+    protected final ResourceProvider resourceProvider;//Dustin: Goal: Completely remove this
     protected VehicleInfo vehicleInfo;
-//    protected final UnboundViewEventBus eventBus;
-    protected final UnboundViewEventBusInterface eventBus;
-//    private ActiveVhaAlertsManager activeVhaAlertsManager;
-    private ActiveVhaAlertsManagerInterface activeVhaAlertsManager;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
-//    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
-    protected VehicleCapabilitiesManagerInterface vehicleCapabilitiesManager;
-//    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
-    protected VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager;
+    //    protected final UnboundViewEventBus eventBus;
+    protected final UnboundViewEventBus eventBus;
+    private ActiveVhaAlertsManager activeVhaAlertsManager;
+    private ActiveVhaAlertsManager activeVhaAlertsManagerInterface;//Dustin: Question: what are responsibilyt differences between Managers, adapters, and providers?
+    //    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
+    protected VehicleCapabilitiesManager vehicleCapabilitiesManager;
+    //    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
+    protected VehicleAuthorizationDataManager vehicleAuthorizationDataManager;
     private VehicleInfoProvider vehicleInfoProvider;
     private String myVehiclePrefix;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
-//    private TransientDataProvider transientDataProvider;
-    private TransientDataProviderInterface transientDataProvider;
+    //    private TransientDataProvider transientDataProvider;
+    private TransientDataProvider transientDataProvider;
     private PaakAdapter paakAdapter;
     private int vehicleHealthAlertsCount;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
     private String vin;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
@@ -149,25 +134,25 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     private boolean hasRecalls = false;//Dustin: Goal: Find a better home for this. Treat as an object, not one-off
 
     protected BaseGarageVehicleViewModel(VehicleInfo vehicleInfo,
-                                         ActiveVhaAlertsManagerInterface activeVhaAlertsManager,
-                                         GlideProviderInterface glideProvider,
-                                         VehicleImageUrlProviderInterface vehicleImageUrlProvider,
-                                         UnboundViewEventBusInterface eventBus,
-                                         TransientDataProviderInterface transientDataProvider,
+                                         ActiveVhaAlertsManager activeVhaAlertsManagerInterface,
+                                         GlideProvider glideProvider,
+                                         VehicleImageUrlProvider vehicleImageUrlProvider,
+                                         UnboundViewEventBus eventBus,
+                                         TransientDataProvider transientDataProvider,
                                          VehicleInfoProvider vehicleInfoProvider,
                                          VehicleImageLoadedEvent vehicleImageLoadedEvent,
-                                         ResourceProviderInterface resourceProvider,
-                                         VehicleCapabilitiesManagerInterface vehicleCapabilitiesManager,
-                                         NgsdnVehicleProviderInterface ngsdnVehicleProvider,
+                                         ResourceProvider resourceProvider,
+                                         VehicleCapabilitiesManager vehicleCapabilitiesManager,
+                                         NgsdnVehicleProvider ngsdnVehicleProvider,
                                          ConfigurationProviderInterface configurationProvider,
                                          SharedPrefsUtil sharedPrefsUtil, ErrorMessageUtil errorMessageUtil,
-                                         RxSchedulingHelperInterface rxSchedulingHelper, VinLookupProviderInterface vinLookupProvider,
-                                         ChargingStatusUtilInterface chargingStatusUtil, AccountInfoProviderInterface accountInfoProvider,
-                                         VehicleControlManagerInterface vehicleControlManager,
+                                         RxSchedulingHelper rxSchedulingHelper, VinLookupProvider vinLookupProvider,
+                                         ChargingStatusUtil chargingStatusUtil, AccountInfoProvider accountInfoProvider,
+                                         VehicleControlManager vehicleControlManager,
                                          PaakAdapter paakAdapter,
-                                         VehicleAuthorizationDataManagerInterface vehicleAuthorizationDataManager) {
+                                         VehicleAuthorizationDataManager vehicleAuthorizationDataManager) {
         this.vehicleInfo = vehicleInfo;
-        this.activeVhaAlertsManager = activeVhaAlertsManager;
+        this.activeVhaAlertsManagerInterface = activeVhaAlertsManagerInterface;
         this.eventBus = eventBus;
         this.transientDataProvider = transientDataProvider;
         this.vehicleImageLoadedEvent = vehicleImageLoadedEvent;
@@ -190,10 +175,16 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     .asBitmap().into(new SimpleTarget<Bitmap>() {
                 @Override
                 public void onResourceReady(Bitmap drawable, GlideAnimation glideAnimation) {
-                    Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable))
+                    Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable)
+                    ).subscribeOn(Schedulers.computation()).subscribe((bitmap) -> {
+                        BaseGarageVehicleViewModel.this.setVehicleImage(bitmap);
+                    }, (error) -> {
+                        error.printStackTrace();
+                    });
+                    /*Observable.fromCallable(() -> BitmapImageUtil.cropTransparentPadding(drawable))
                             .compose(rxSchedulingHelper.observableSchedulers(Threads.COMPUTATION))
-                            .subscribe(BaseGarageVehicleViewModel.this::setVehicleImage, Throwable::printStackTrace);
-                }
+                            .subscribe(BaseGarageVehicleViewModel.this.setVehicleImage(drawable), {}, {});*/
+                }//Renee
 
                 @Override
                 public void onLoadFailed(Exception e, Drawable errorDrawable) {
@@ -201,12 +192,11 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                 }
             });
             showVehicleYearBrandModel();
-            //Dustin: Do we need to set this directly or can we raise a changeVin event?
             sharedPrefsUtil.setCurrentVehicleVin(vehicleInfo.getVin());
             updateFordScriptVisibility();
         }
+        //Dustin: inject the linkText we want to use.
         subscribeOnLifecycle(accountInfoProvider.getAccountCountry().subscribe(country -> {
-            //Dustin: inject the linkText we want to use.
             if (country.equals(Country.GREAT_BRITAIN)) {
                 vehicleDetailButtonLinkText.set(R.string.move_landing_details_and_service_booking);
             }
@@ -255,6 +245,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         return vehicleInfo.getLocalizedModelName().or(vehicleInfo.getModelName());
     }
 
+
     public String getVin() {
         return vehicleInfo.getVin();
     }
@@ -271,13 +262,15 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         transientDataProvider.save(new GarageVehicleSelectedVinUseCase(vehicleInfo.getVin(), vehicleImage.get(), myVehiclePrefix, getDisplayName(),
                 getBrandYearAndModel(resourceProvider.getString(R.string.common_environment_brand)), vehicleCompatibility, getModelName()));
 
-        StartActivityEvent event = StartActivityEvent.build(this).activityName(VehicleDetailsActivity.class);
+        StartActivityEvent event = StartActivityEvent.build(this).activityName(VehicleDetailsActivity.class);//renee
         eventBus.send(event);
     }
-//Dustin: could we push the logic for TCU into vcManager?  perhaps create a rules class when to get a service?
+
+    //Dustin: could we push the logic for TCU into vcManager?  perhaps create a rules class when to get a service?
     private void checkAppLinkCompatibility(VehicleInfo vehicleInfo) {
         if (vehicleInfo.getSDNSourceForTCU() == Vehicle.SOURCE_NGSDN) {
-            subscribeOnLifecycle(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(vehicleInfo.getVin()).subscribe(this::setupAppLinkVehicleDetails, Throwable::printStackTrace));
+            subscribeOnLifecycle(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(vehicleInfo.getVin())
+                    .subscribe(this::setupAppLinkVehicleDetails, Throwable::printStackTrace));
         }
     }
 
@@ -301,7 +294,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
             }
         }, Throwable::printStackTrace));
     }
-//Dustin: could we determine what logic to pass in here from the class injecting this?
+
+    //Dustin: could we determine what logic to pass in here from the class injecting this?
     public void updateRemoteStartVisibilityXApi() {
         //Dustin: can we remove all references to configProvider?
         if (configurationProvider.getConfiguration().isDashboardXApiPhase2Enabled()) {
@@ -313,7 +307,9 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     .subscribe(this::setVehicleControlVisibilityXapi, throwable -> showGenericErrorMessageAndHideLoadingSpinner()));
         }
     }
-//Dustin: this smells of convienence.
+
+    //Dustin: this smells of convienence.
+    //Shashank
     public PaakVehicleControlsViewModel getVehicleControlsViewModel() {
         return vehicleControlsViewModel;
     }
@@ -329,7 +325,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         this.vehicleHealthAlertsCount = vehicleHealthAlertsCount;
         setVehicleHealthAlertIcon();
     }
-//Dustin more lightweight display logic we could consolidate in the vehicleInfoDisplayManager()
+
+    //Dustin more lightweight display logic we could consolidate in the vehicleInfoDisplayManager()
     public String getBrandYearAndModel(String brand) {
         return vehicleInfo.getModelYear() + " " + brand + " " + vehicleInfo.getLocalizedModelName().or(vehicleInfo.getModelName());
     }
@@ -337,6 +334,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     public void setVehicleVisible() {
         vehicleControlsViewModel.setVehicleVisible();
     }
+
     //Dustin: can we bind to some object's property instead of using branching logic to call on and off methods?
     public void setVehicleNotVisible() {
         //Dustin: one VM directly calling another? Is that part of our architecture?
@@ -385,7 +383,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
             updateVehicleDataForAuthorizationStatus(updatedVehicleInfo);
         }
     }
-//Dustin: This logic looks like someone else could own it.
+
+    //Dustin: This logic looks like someone else could own it.
     private void setupAppLinkVehicleDetails(String vhaType) {
         boolean applinkCompatible = !vhaType.equals(VcsAppLinkCapabilityProvider.VhaType.VHA_NOT_SUPPORTED);
         if (applinkCompatible) {
@@ -440,7 +439,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
             }
         }
     }
-//Dustin: another place where dto's and binding may help.
+
+    //Dustin: another place where dto's and binding may help.
     private void setVehicleHealthAlertIcon() {
         if (!hasRecalls) {
             if (vehicleHealthAlertsCount > 0) {
@@ -453,6 +453,14 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
     }
 
     private void setVehicleControlsWithVcs(String vin) {
+        subscribeOnLifecycle(vehicleControlManager.getVehicleControlOptions(vin)
+                .flatMap(vehicleControlOptionsModel ->
+                        vehicleControlOptionsModel.isPaakCapable() && configurationProvider.getConfiguration().isPaakEnabled()
+                                ? paakAdapter.init().onErrorComplete().andThen(Observable.just(vehicleControlOptionsModel))
+                                : Observable.just(vehicleControlOptionsModel))
+                .subscribe(this::setVehicleControlVisibility, throwable -> showGenericErrorMessageAndHideLoadingSpinner()));
+    }
+    private void setVehicleControlsWithVcsDupeTest(String vin) {
         subscribeOnLifecycle(vehicleControlManager.getVehicleControlOptions(vin)
                 .flatMap(vehicleControlOptionsModel ->
                         vehicleControlOptionsModel.isPaakCapable() && configurationProvider.getConfiguration().isPaakEnabled()
@@ -480,17 +488,21 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         shouldShowCargoUnlock.set(cargoUnlockEnabled);
     }
 
-//Dustin bind bind bind.
+    //Dustin bind bind bind.
     private void setVehicleControlVisibilityXapi(VehicleControlOptionsModelXapi vehicleControlOptionsModel) {
         shouldShowVehicleControls.set(false);
         shouldShowOnlyLockUnlock.set(false);
         shouldShowPaakVehicleControls.set(false);
-        RemoteStartState remoteStartEligibility = vehicleControlOptionsModel.getRemoteStartState();
+        RemoteCommandState remoteStartEligibility = vehicleControlOptionsModel.getRemoteStartState();
         shouldShowRemoteStartOnly.set(!remoteStartEligibility.equals(RemoteStartState.DO_NOT_DISPLAY));
     }
 
     public void setVehicleRecallAndFsa(VehicleRecallAndFsa vehicleRecallAndFsa) {
         setAlertIcon(vehicleRecallAndFsa);
+    }
+
+    //20200820 Dustin added: Test needed it, this class did NOT have it as we may be on an outdated version of the clas
+    public void updateCommandAndControlButtonsVisibilityXApi() {
     }
 
     @FunctionalInterface
@@ -570,12 +582,6 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
                     break;
                 case PRIMARY_AUTH_PENDING:
                     break;
-                if (configurationProvider.getConfiguration().isTmcMigrationEnabled()) {
-                    setAuthTextForPendingWithTmcEnabled();
-                } else {
-                    setAuthPendingTextForTcuSource(updatedVehicleInfo);
-                    vehicleControlsViewModel.checkVehicleState(updatedVehicleInfo);
-                }
                 case SECONDARY_AUTH_PENDING:
                     setAuthStateText(R.string.move_landing_activation_pending_heading, R.string.move_landing_activation_pending_secondary_user);
                     vehicleControlsViewModel.checkVehicleState(updatedVehicleInfo);

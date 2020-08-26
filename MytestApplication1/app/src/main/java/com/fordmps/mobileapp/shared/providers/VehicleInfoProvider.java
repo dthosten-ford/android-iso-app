@@ -8,30 +8,20 @@
 
 package com.fordmps.mobileapp.shared.providers;
 
-import com.ford.asdn.models.ASDNVehicle;
 import com.ford.dashboard.models.VehicleInfo;
-import com.ford.ngsdnvehicle.models.NgsdnVehicleOwnerManualDetailsResponse;
-import com.ford.rxutils.CacheTransformerProvider;
-import com.ford.vehiclecommon.models.Vehicle;
-import com.ford.vehiclecommon.models.VehicleDetails;
-import com.ford.vinlookup.models.VinDetailsLookup;
-import com.ford.vinlookup.models.VinLookup;
-import com.ford.vinlookup.models.VinLookupEslResponse;
-import com.ford.wifihotspot.models.NgsdnImsiResponse;
-import com.ford.wifihotspot.models.NgsdnWifiDataUsageResponse;
-import com.google.common.base.Optional;
+import com.fordmps.mobileapp.move.CacheTransformerProvider;
 
-import java.util.List;
-
-import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.Single;
 
 public interface VehicleInfoProvider {
+    Observable<VehicleInfo> getVehicleStatus(VehicleInfo vehicleInfo, CacheTransformerProvider.Policy networkOnly);
+
+    Observable<VehicleInfo> getVehicleAuthStatus(VehicleInfo vehicleInfo);
 //    Observable<List<VehicleInfo>> getVehicles();
 //
 //    Observable<VehicleInfo> getVehicle(final String vin);
 //
+
 //    Observable<VehicleInfo> getVehicleStatus(final VehicleInfo vehicle, CacheTransformerProvider.Policy cachePolicy);
 //
 //    Observable<VehicleInfo> getVehicleAuthStatus(final VehicleInfo vehicleInfo);
@@ -40,7 +30,7 @@ public interface VehicleInfoProvider {
 //
 //    Observable<VehicleDetails> getVehicleDetails(Vehicle vehicle, CacheTransformerProvider.Policy policy);
 //
-//    Observable<VehicleInfo> getVehicleInfo(final String vin, CacheTransformerProvider.Policy cachePolicy);
+    Observable<VehicleInfo> getVehicleInfo(final String vin, CacheTransformerProvider.Policy cachePolicy);
 //
 //    Single<NgsdnWifiDataUsageResponse> getWifiDataPlanAndUsage(final String vin);
 //

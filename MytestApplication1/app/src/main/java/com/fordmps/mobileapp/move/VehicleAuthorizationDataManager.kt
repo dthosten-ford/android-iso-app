@@ -2,25 +2,38 @@
 package com.fordmps.mobileapp.move
 
 import com.ford.dashboard.models.VehicleInfo
+import com.ford.dashboard.models.VehicleInfoImpl
+import com.ford.vehiclecommon.models.Vehicle
+import androidx.core.util.Pair
+
 
 //
 //import com.ford.repo.capabilities.VehicleCapabilitiesRepository
 //import com.ford.xapi.models.response.VehicleCapability
 //import com.ford.xapi.models.response.XapiAuthStatus
 //import com.fordmps.mobileapp.shared.configuration.ConfigurationProvider
-//import io.reactivex.Observable
+import io.reactivex.Observable
 //import io.reactivex.functions.BiFunction
 //import javax.inject.Inject
 
-interface VehicleAuthorizationDataManagerInterface {
+interface VehicleAuthorizationDataManager {
     fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
 
     }
+    fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability>>{
+        val pair: Pair<VehicleInfo, VehicleCapability> =
+            Pair(VehicleInfoImpl(), VehicleCapability())
+        return Observable.just(pair)
+    }
 
-    val XApiAuthorizationStatus: Int
-    val XApiAuthorizationStatus: Int
+    fun isPendingReset() : Boolean
+    fun xApiAuthorizationStatus() : Int
+//    val authorizationData: VehicleInfo
+
+    //    val authorizationData: VehicleInfo
+    val vin: String
+    val XApiAuthorizationStatus: Vehicle.Authorization
     val pendingReset: Boolean
-    val authorizationData: VehicleInfo
 }
 
 //@OpenForTesting

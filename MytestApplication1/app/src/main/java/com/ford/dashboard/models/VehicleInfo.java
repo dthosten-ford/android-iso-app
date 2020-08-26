@@ -12,7 +12,9 @@ package com.ford.dashboard.models;
 //import com.ford.vehiclecommon.models.VehicleAuthStatus;
 //import com.ford.vehiclecommon.models.VehicleStatus;
 
-import java.util.Optional;
+import com.ford.vehiclecommon.models.VehicleDetails;
+import com.ford.vehiclecommon.models.VehicleStatus;
+import com.google.common.base.Optional;
 
 public interface VehicleInfo extends Vehicle {
     void setVehicleSource(int vehicleSource);
@@ -24,7 +26,7 @@ public interface VehicleInfo extends Vehicle {
     void setMasterResetAvailability(boolean resetAvailable);
     boolean isMasterResetAvailable();
 
-    int getModelYear();
+    String getModelYear();
 
     String getVin();
 
@@ -36,7 +38,15 @@ public interface VehicleInfo extends Vehicle {
 
     Optional<String> getNickname();
 
-    String getLocalizedModelName();
+    Optional<String> getLocalizedModelName();
 
-    boolean getSDNSourceForTCU();
+    int getSDNSourceForTCU();
+
+    boolean isAuthorized();
+
+    Optional< VehicleStatus>  getVehicleStatus();
+
+    Optional<VehicleDetails> getVehicleDetails();
+
+    String getAuthorization();
 }
