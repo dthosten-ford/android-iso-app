@@ -1,3 +1,9 @@
 package  com.fordmps.mobileapp.shared.datashare.usecases;
 
-public interface FindCollisionCenterVehicleInfoUseCase{}
+import com.ford.dashboard.models.VehicleInfo;
+
+public class FindCollisionCenterVehicleInfoUseCase implements UseCase{
+    public FindCollisionCenterVehicleInfoUseCase(VehicleInfo vehicleInfo) {
+
+    }
+}

@@ -89,8 +89,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -1210,7 +1208,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(true);
         when(updatedVehicleInfo.isPreAuthorized()).thenReturn(true);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VcsAppLinkCapabilityProvider.VhaType.VHA_2_0_TCU));
         VehicleControlOptionsModel optionsModel = mock(VehicleControlOptionsModel.class);
@@ -1228,7 +1226,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleInfo.getModelYear()).thenReturn("2016");
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(updatedVehicleInfo.getVin()).thenReturn(VIN);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VcsAppLinkCapabilityProvider.VhaType.VHA_2_0_APPLINK));
@@ -1258,7 +1256,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
     public void checkVehicleAuthStatus_tcuEnabledAndTcuIsNotAuthorizedAndAsdnAndAppLinkCompatible_doesNotCallVehicleHealthAlert() {
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_ASDN);
         setupAuthorizedVehicleStatus();
 
@@ -1315,10 +1313,10 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(resourceProvider.getString(R.string.move_landing_sync_connect_description)).thenReturn("");
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_ASDN);
         when(vehicleInfo.getModelYear()).thenReturn("2016");
-        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
+        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED.toString()));
         setupUnAuthorizedVehicleStatus();
 
         verifyNoMoreInteractions(activeVhaAlertsManager);
@@ -1331,9 +1329,9 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.getModelYear()).thenReturn("2016");
-        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
+        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED.toString()));
         setupUnAuthorizedVehicleStatus();
 
         verify(activeVhaAlertsManager, never()).getActiveAlertsFromCacheThenNetwork(anyString(), anyString());
@@ -1345,7 +1343,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(resourceProvider.getString(R.string.move_landing_sync_connect_description)).thenReturn("");
         when(vehicleInfo.getModelYear()).thenReturn("2016");
         setupUnAuthorizedVehicleStatus();
-        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
+        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED.toString()));
 
         verifyNoMoreInteractions(activeVhaAlertsManager);
     }
@@ -1370,7 +1368,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
     @Test
     public void checkVehicleAuthStatus_tcuNotEnabledAndAppLinkNotCompatible_doesNotCallVehicleHealthAlert() {
         setupUnAuthorizedVehicleStatus();
-        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
+        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED.toString()));
 
         verifyNoMoreInteractions(activeVhaAlertsManager);
     }
@@ -1382,7 +1380,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
         when(mBitmapTypeRequest.toBytes(Bitmap.CompressFormat.JPEG, 70)).thenReturn(mBitmapRequestBuilder);
@@ -1407,7 +1405,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
         when(mBitmapTypeRequest.toBytes(Bitmap.CompressFormat.JPEG, 70)).thenReturn(mBitmapRequestBuilder);
@@ -1431,7 +1429,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.isTcuEnabled()).thenReturn(false);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
@@ -1457,7 +1455,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(vehicleAlertResponse.getActiveAlerts()).thenReturn(alertList);
         VehicleDetails vehicleDetails = mock(VehicleDetails.class);
         when(vehicleDetails.isTcuAuthorized()).thenReturn(false);
-        when(vehicleInfo.getVehicleDetails()).thenReturn(vehicleDetails);
+        when(vehicleInfo.getVehicleDetails()).thenReturn((Optional<VehicleDetails>) vehicleDetails);
         when(vehicleInfo.isTcuEnabled()).thenReturn(false);
         when(vehicleInfo.getSDNSourceForTCU()).thenReturn(SOURCE_NGSDN);
         when(vehicleInfo.getLocalizedModelName()).thenReturn(Optional.of("Transit Conn..."));
@@ -1466,7 +1464,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
         when(glideProvider.load(anyString())).thenReturn(mDrawableTypeRequest);
         when(serviceLocaleProvider.getLocale()).thenReturn(ServiceLocale.US);
         setUpSubject();
-        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED));
+        when(vehicleCapabilitiesManager.getVhaTypeFromVehicleCapabilityService(anyString())).thenReturn(Observable.just(VHA_NOT_SUPPORTED.toString()));
 
         subject.checkVehicleAuthStatus();
         subject.launchVehicleDetails();

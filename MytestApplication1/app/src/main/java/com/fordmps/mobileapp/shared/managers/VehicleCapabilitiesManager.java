@@ -1,12 +1,11 @@
 package com.fordmps.mobileapp.shared.managers;
 
 import com.ford.vcs.models.Feature;
+import com.ford.vcs.models.VehicleCapabilitiesResponse;
 import com.fordmps.data.enums.SdnType;
-import com.fordmps.mobileapp.move.VehicleCapabilitiesResponse;
 
 import java.util.List;
 
-import io.reactivex.Maybe;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 

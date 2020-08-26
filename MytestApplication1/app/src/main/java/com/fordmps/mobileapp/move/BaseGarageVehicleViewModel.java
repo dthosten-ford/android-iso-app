@@ -21,7 +21,6 @@ package com.fordmps.mobileapp.move;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import androidx.annotation.StringRes;
 import androidx.core.util.Pair;
@@ -40,7 +39,6 @@ import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
 import com.ford.paak.PaakAdapter;
 import com.ford.rxutils.schedulers.RxSchedulingHelper;
-import com.ford.rxutils.schedulers.Threads;
 import com.ford.utils.BitmapImageUtil;
 import com.ford.utils.TextUtils;
 import com.ford.vehiclecommon.models.Vehicle;

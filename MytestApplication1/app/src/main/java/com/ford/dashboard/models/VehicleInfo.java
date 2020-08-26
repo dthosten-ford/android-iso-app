@@ -8,10 +8,6 @@
 
 package com.ford.dashboard.models;
 
-//import com.ford.vehiclecommon.models.Vehicle;
-//import com.ford.vehiclecommon.models.VehicleAuthStatus;
-//import com.ford.vehiclecommon.models.VehicleStatus;
-
 import com.ford.vehiclecommon.models.VehicleDetails;
 import com.ford.vehiclecommon.models.VehicleStatus;
 import com.google.common.base.Optional;
@@ -50,4 +46,6 @@ public interface VehicleInfo extends Vehicle {
 //    VehicleDetails getVehicleDetails();
 
     Optional<com.ford.vehiclecommon.models.Vehicle.Authorization> getAuthorization();
+
+    boolean isPreAuthorized();
 }

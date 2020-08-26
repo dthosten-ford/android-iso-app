@@ -101,9 +101,17 @@ public class VehicleInfoImpl implements VehicleInfo{
     public Optional<VehicleDetails> getVehicleDetails() {
         return null;
     }
+//    public VehicleDetails getVehicleDetails() {
+//        return null;
+//    }
 
     @Override
     public Optional<Vehicle.Authorization> getAuthorization() {
         return null;
+    }
+
+    @Override
+    public boolean isPreAuthorized() {
+        return false;
     }
 }
