@@ -15,7 +15,10 @@ public interface PaakVehicleControlsViewModel {
 
     void checkVehicleState(VehicleInfo vehicleInfo);
 
+    void onDestroy();
+
     public interface Factory {
+        Object newInstance(VehicleInfo any);
     }
 
 //    public static class Factory {

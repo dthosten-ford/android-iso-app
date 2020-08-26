@@ -493,7 +493,7 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         shouldShowVehicleControls.set(false);
         shouldShowOnlyLockUnlock.set(false);
         shouldShowPaakVehicleControls.set(false);
-        RemoteStartState remoteStartEligibility = vehicleControlOptionsModel.getRemoteStartState();
+        RemoteCommandState remoteStartEligibility = vehicleControlOptionsModel.getRemoteStartState();
         shouldShowRemoteStartOnly.set(!remoteStartEligibility.equals(RemoteStartState.DO_NOT_DISPLAY));
     }
 

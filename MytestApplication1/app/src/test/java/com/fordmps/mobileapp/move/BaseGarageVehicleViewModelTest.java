@@ -244,7 +244,7 @@ public abstract class BaseGarageVehicleViewModelTest extends BaseTest {
     @Before
     public void setup() {
         when(vehicleInfo.getVin()).thenReturn(VIN);
-        when(accountInfoProvider.getAccountCountry()).thenReturn(Observable.just(Country.GREAT_BRITAIN));
+        when(accountInfoProvider.getAccountCountry()).thenReturn(Observable.just(Country.GREAT_BRITAIN.name()));
         when(configurationProvider.getConfiguration()).thenReturn(configuration);
         when(configuration.isPaakEnabled()).thenReturn(false);
         when(vehicleInfo.getModelName()).thenReturn(MODEL_NAME);

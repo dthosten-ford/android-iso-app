@@ -8,6 +8,7 @@ import java.util.List;
 
 import io.reactivex.Maybe;
 import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface VehicleCapabilitiesManager {
     Observable<String> getVhaTypeFromVehicleCapabilityService(String vin);
@@ -16,7 +17,7 @@ public interface VehicleCapabilitiesManager {
 
     boolean isValidVcsResponse(VehicleCapabilitiesResponse o);
 
-    Maybe<SdnType> getVehicleSdnType(String vin);
+    Single<SdnType> getVehicleSdnType(String vin);
 
     boolean getFeatureEligibility(List<Feature> vehicleCapabilitiesResponse, int userReset);
 }
