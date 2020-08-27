@@ -1,6 +1,7 @@
 package com.fordmps.mobileapp.move;
 
 import com.ford.dashboard.models.VehicleInfo;
+import com.ford.vehiclecommon.models.GarageVehicleProfile;
 
 public interface PaakVehicleControlsViewModel {
     void setVehicleVisible();
@@ -14,6 +15,7 @@ public interface PaakVehicleControlsViewModel {
     void setVehicleControlsForPaak();
 
     void checkVehicleState(VehicleInfo vehicleInfo);
+    void checkVehicleState(GarageVehicleProfile vehicleInfo);
 
     void onDestroy();
 

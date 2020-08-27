@@ -5,6 +5,7 @@ import com.ford.dashboard.models.VehicleInfo
 import com.ford.dashboard.models.VehicleInfoImpl
 import com.ford.vehiclecommon.models.Vehicle
 import androidx.core.util.Pair
+import com.ford.vehiclecommon.models.VehicleAuthStatus
 import com.ford.xapi.models.response.XapiAuthStatus
 
 
@@ -21,14 +22,25 @@ interface VehicleAuthorizationDataManager {
     fun setVehicleData(updatedVehicleInfo: VehicleInfo, vehicleCapability: VehicleCapability) {
 
     }
-    fun getAuthorizationData(vehicleInfo: VehicleInfo): Observable<Pair<VehicleInfo, VehicleCapability>>{
-        val pair: Pair<VehicleInfo, VehicleCapability> =
-            Pair(VehicleInfoImpl(), VehicleCapability())
+    fun getAuthorizationData(String: VehicleInfo): Observable<Pair<String, VehicleCapability>>{
+        val pair: Pair<String, VehicleCapability> =
+            Pair("Asdf", VehicleCapability())
         return Observable.just(pair)
     }
 
     fun isPendingReset() : Boolean
     fun xApiAuthorizationStatus() : Int
+    fun setVehicleData(vin: String, updatedVehicleInfo: VehicleAuthStatus, vehicleCapability: VehicleCapability) {
+
+    }
+
+//    fun setVehicleData(vin: String, updatedVehicleInfo: VehicleAuthStatus, vehicleCapability: VehicleCapability) {
+//
+//    }
+//
+//    fun setVehicleData(vin: String, updatedVehicleInfo: VehicleAuthStatus, vehicleCapability: VehicleCapability) {
+//
+//    }
 //    val authorizationData: VehicleInfo
 
     //    val authorizationData: VehicleInfo

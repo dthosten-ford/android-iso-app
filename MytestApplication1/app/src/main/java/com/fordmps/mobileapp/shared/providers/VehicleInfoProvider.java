@@ -8,7 +8,12 @@
 
 package com.fordmps.mobileapp.shared.providers;
 
+//import com.ford.dashboard.models.VehicleAuthStatus;
+
 import com.ford.dashboard.models.VehicleInfo;
+import com.ford.vehiclecommon.models.GarageVehicleProfile;
+import com.ford.vehiclecommon.models.VehicleAuthStatus;
+import com.ford.vehiclecommon.models.VehicleStatus;
 import com.fordmps.mobileapp.move.CacheTransformerProvider;
 
 import io.reactivex.Observable;
@@ -31,6 +36,10 @@ public interface VehicleInfoProvider {
 //    Observable<VehicleDetails> getVehicleDetails(Vehicle vehicle, CacheTransformerProvider.Policy policy);
 //
     Observable<VehicleInfo> getVehicleInfo(final String vin, CacheTransformerProvider.Policy cachePolicy);
+
+    Observable<VehicleAuthStatus> getVehicleAuthStatusObject(String vin);
+
+    Observable<VehicleStatus> getGarageVehicleStatus(GarageVehicleProfile vehicleInfo, CacheTransformerProvider.Policy networkOnly);
 //
 //    Single<NgsdnWifiDataUsageResponse> getWifiDataPlanAndUsage(final String vin);
 //

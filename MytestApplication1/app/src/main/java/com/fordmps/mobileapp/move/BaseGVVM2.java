@@ -1,3 +1,5 @@
+package com.fordmps.mobileapp.move;
+
 /*
  * CONFIDENTIAL FORD MOTOR COMPANY
  * This is an unpublished work of authorship, which contains confidential information and/or trade secrets, created in 2019. Ford Motor Company owns all rights to this work and intends to maintain it in confidence to preserve its trade secret status. Ford Motor Company reserves all rights, under the copyright laws of the United States or those of any other country that may have jurisdiction, including the right to protect this work as an unpublished work, in the event of an inadvertent or deliberate unauthorized publication. Use of this work constitutes an agreement to maintain the confidentiality of the work, and to refrain from any reverse engineering, decompilation, or disassembly of this work.
@@ -5,8 +7,6 @@
  * Copyright 2019, Ford Motor Company.
  *
  */
-
-package com.fordmps.mobileapp.move;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -27,7 +27,6 @@ import com.ford.ngsdnuser.providers.AccountInfoProvider;
 import com.ford.ngsdnvehicle.providers.NgsdnVehicleProvider;
 import com.ford.paak.PaakAdapter;
 import com.ford.recall.fsa.repo.common.VehicleRecallAndFsa;
-import com.ford.rxutils.CacheTransformerProvider;
 import com.ford.rxutils.RxSchedulerProvider;
 import com.ford.rxutils.schedulers.RxSchedulingHelper;
 import com.ford.rxutils.schedulers.Threads;
@@ -50,7 +49,6 @@ import com.fordmps.mobileapp.shared.datashare.TransientDataProvider;
 import com.fordmps.mobileapp.shared.datashare.usecases.FindCollisionCenterVehicleInfoUseCase;
 import com.fordmps.mobileapp.shared.datashare.usecases.FindVehicleLocationUseCase;
 import com.fordmps.mobileapp.shared.datashare.usecases.GarageVehicleSelectedVinUseCase;
-import com.fordmps.mobileapp.shared.datashare.usecases.ProgressBarUseCase;
 import com.fordmps.mobileapp.shared.events.StartActivityEvent;
 import com.fordmps.mobileapp.shared.events.UnboundViewEventBus;
 import com.fordmps.mobileapp.shared.managers.VehicleCapabilitiesManager;
@@ -61,13 +59,12 @@ import com.fordmps.mobileapp.shared.utils.ErrorMessageUtil;
 import com.fordmps.mobileapp.shared.utils.GarageTabOrder;
 import com.fordmps.viewutils.R;
 
-import dagger.Lazy;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.functions.BiFunction;
+import kotlin.Lazy;
 
 import static com.ford.vcs.models.Feature.FeatureNames.USER_RESET;
-import static com.fordmps.mobileapp.move.vehiclehealthalerts.VehicleHealthAlertsUtil.getVhaSource;
 
 public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel implements BrandGarageBackground, GarageViewPagerItem {
 
@@ -372,6 +369,8 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         }
     }
 
+    protected abstract String getVhaSource(GarageVehicleProfile vehicleInfo, boolean isPreAuthorized);
+
     private void fetchVehicleHealthAlerts(String source) {
         subscribeOnLifecycle(activeVhaAlertsManager.getActiveAlertsFromCacheThenNetwork(vin, source)
                 .subscribe(this::showVehicleHealthAlertCount, Throwable::printStackTrace));
@@ -588,4 +587,5 @@ public abstract class BaseGarageVehicleViewModel extends BaseLifecycleViewModel 
         shouldShowPaakVehicleControls.set(false);
     }
 }
+
 
